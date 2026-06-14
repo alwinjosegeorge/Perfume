@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
+import { nitro } from "nitro/vite";
 
 process.env.GOMAXPROCS = process.env.GOMAXPROCS || "2";
 
@@ -20,6 +21,7 @@ export default defineConfig({
       },
       server: { entry: "src/server.ts" },
     }),
+    nitro(),
     react(),
   ],
   resolve: {
