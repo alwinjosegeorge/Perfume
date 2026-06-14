@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Phone, MessageSquare } from "lucide-react";
-import { BellezzaLogo } from "./Header";
+import { VoguishMomentsLogo } from "./Header";
 
 export function Footer() {
   return (
@@ -8,7 +8,7 @@ export function Footer() {
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12 py-14">
         <div className="grid md:grid-cols-2 gap-10 pb-10 border-b border-border">
           <div>
-            <div className="mb-4"><BellezzaLogo /></div>
+            <div className="mb-4"><VoguishMomentsLogo /></div>
             <p className="text-muted-foreground max-w-xs">
               Elegance in every drop – Beauty that feels as good as it looks.
             </p>
@@ -39,7 +39,7 @@ export function Footer() {
             <Link to="/contact" className="hover:text-accent">Contact Us</Link>
           </nav>
           <div className="flex flex-col md:items-end gap-1.5 text-xs text-muted-foreground text-center md:text-right">
-            <p>© 2026 — Bellezza. All rights reserved.</p>
+            <p>© 2026 — Voguish Moments. All rights reserved.</p>
             <p>
               Designed & Developed by{" "}
               <a

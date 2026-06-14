@@ -16,7 +16,7 @@ export const Route = createFileRoute("/product/$slug")({
     const product = all.find((p) => p.slug === loaderData?.slug);
     return {
       meta: [
-        { title: `${product?.name ?? "Product"} — Bellezza` },
+        { title: `${product?.name ?? "Product"} — Voguish Moments` },
         { name: "description", content: product?.description ?? "" },
       ],
     };
@@ -38,6 +38,7 @@ function ProductPage() {
   const [selectedSize, setSelectedSize] = useState<string>("50 ml");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activeMainImage, setActiveMainImage] = useState<string>("");
+  const [isExpanded, setIsExpanded] = useState(false);
   const { add } = useCart();
   const router = useRouter();
 
@@ -56,6 +57,7 @@ function ProductPage() {
   useEffect(() => {
     if (product) {
       setActiveMainImage(product.img);
+      setIsExpanded(false);
     }
   }, [product]);
 
@@ -102,7 +104,7 @@ function ProductPage() {
 
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
           <div className="grid grid-cols-1 gap-4">
-            <div className="aspect-square rounded-3xl overflow-hidden bg-cream">
+            <div className="aspect-square rounded-none overflow-hidden bg-cream">
               <img 
                 src={activeMainImage || product.img} 
                 alt={product.name} 
@@ -116,7 +118,7 @@ function ProductPage() {
                 <div 
                   key={i} 
                   onClick={() => setActiveMainImage(imgUrl)}
-                  className={`aspect-square rounded-xl overflow-hidden bg-cream border transition-all cursor-pointer ${
+                  className={`aspect-square rounded-none overflow-hidden bg-cream border transition-all cursor-pointer ${
                     activeMainImage === imgUrl ? "border-accent ring-1 ring-accent" : "border-border hover:border-foreground/30"
                   }`}
                 >
@@ -126,32 +128,31 @@ function ProductPage() {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-start">
             <div className="text-sm text-muted-foreground flex items-center gap-2">
               <span>{product.category}</span>
             </div>
-            <h1 className="mt-2 font-display text-4xl md:text-5xl">{product.name}</h1>
-            <div className="mt-4 font-display text-3xl text-foreground">
-              <span className="font-sans mr-1 font-normal">₹</span>{currentPrice.toLocaleString("en-IN")}
+            <h1 className="mt-2 font-display text-4xl md:text-5xl font-light">{product.name}</h1>
+            <div className="mt-4 font-display text-2xl md:text-3xl font-light text-foreground">
+              <span className="font-sans mr-1 font-light">₹</span>{currentPrice.toLocaleString("en-IN")}
             </div>
-            <p className="mt-6 text-muted-foreground leading-relaxed">{product.description}</p>
 
             {/* Size Selector */}
             <div className="mt-8">
-              <div className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase mb-3">Size</div>
+              <div className="text-[10px] font-light tracking-[0.2em] text-muted-foreground uppercase mb-3">Size</div>
               <div className="flex gap-3 flex-wrap">
                 {sizeOptions.map((sizeOption) => (
-                  <button
-                    key={sizeOption}
-                    onClick={() => setSelectedSize(sizeOption)}
-                    className={`px-6 py-3 rounded-xl border text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer ${
-                      selectedSize === sizeOption
-                        ? "bg-[#1c1917] text-white border-[#1c1917] shadow-md shadow-stone-900/10 scale-[1.02]"
-                        : "bg-[#FAF9F5] border-border/70 hover:border-foreground/30 text-muted-foreground"
-                    }`}
-                  >
-                    {sizeOption}
-                  </button>
+                   <button
+                     key={sizeOption}
+                     onClick={() => setSelectedSize(sizeOption)}
+                     className={`px-6 py-3 rounded-xl border text-xs font-light tracking-widest uppercase transition-all cursor-pointer ${
+                       selectedSize === sizeOption
+                         ? "bg-[#1c1917] text-white border-[#1c1917] shadow-md shadow-stone-900/10 scale-[1.02]"
+                         : "bg-[#FAF9F5] border-border/70 hover:border-foreground/30 text-muted-foreground"
+                     }`}
+                   >
+                     {sizeOption}
+                   </button>
                 ))}
               </div>
             </div>
@@ -180,7 +181,7 @@ function ProductPage() {
                     setToastMessage(`Added ${product.name} (${selectedSize}) x${qty} to cart!`);
                     setTimeout(() => setToastMessage(null), 3500);
                   }}
-                  className="flex-1 bg-white hover:bg-[#FAF9F5] border border-border text-foreground rounded-full px-6 py-3.5 flex items-center justify-center gap-2 text-xs font-bold tracking-widest uppercase transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+                  className="flex-1 bg-white hover:bg-[#FAF9F5] border border-border text-foreground rounded-full px-6 py-3.5 flex items-center justify-center gap-2 text-xs font-light tracking-[0.18em] uppercase transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
                 >
                   <ShoppingBag className="w-4 h-4" /> Add to Cart
                 </button>
@@ -189,18 +190,39 @@ function ProductPage() {
                     add(product.slug, qty, selectedSize);
                     router.navigate({ to: "/cart" });
                   }}
-                  className="flex-1 bg-[#1c1917] hover:bg-foreground/90 text-white rounded-full px-6 py-3.5 flex items-center justify-center gap-2 text-xs font-bold tracking-widest uppercase transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer shadow-md shadow-stone-900/10"
+                  className="flex-1 bg-[#1c1917] hover:bg-foreground/90 text-white rounded-full px-6 py-3.5 flex items-center justify-center gap-2 text-xs font-light tracking-[0.18em] uppercase transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer shadow-md shadow-stone-900/10"
                 >
                   Buy Now
                 </button>
               </div>
             </div>
 
+            {(() => {
+              const threshold = 150;
+              const shouldShowToggle = product.description.length > threshold;
+              const displayDescription = shouldShowToggle && !isExpanded
+                ? product.description.slice(0, threshold) + "..."
+                : product.description;
+
+              return (
+                <p className="mt-8 text-muted-foreground leading-relaxed text-sm">
+                  {displayDescription}
+                  {shouldShowToggle && (
+                    <button
+                      onClick={() => setIsExpanded(!isExpanded)}
+                      className="ml-2 text-[#1c1917] hover:opacity-75 font-medium underline cursor-pointer inline-block"
+                    >
+                      {isExpanded ? "See Less" : "See More"}
+                    </button>
+                  )}
+                </p>
+              );
+            })()}
           </div>
         </div>
 
         <section className="mt-20">
-          <h2 className="font-display text-3xl md:text-4xl mb-8 text-center">You May Also Like</h2>
+          <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-8 text-center">You May Also Like</h2>
           <div className="grid grid-cols-2 md:flex md:justify-center gap-6 lg:gap-8">
             {related.map((p) => (
               <div key={p.slug} className="md:w-[280px] w-full">

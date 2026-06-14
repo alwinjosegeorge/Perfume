@@ -67,7 +67,7 @@ export function ModeSelectionScreen() {
         <div className="mb-14 hidden md:block">
           <img
             src={logoImg}
-            alt="Bellezza Logo"
+            alt="Voguish Moments Logo"
             className="h-14 md:h-16 w-auto object-contain invert brightness-200 filter"
           />
         </div>

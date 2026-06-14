@@ -13,7 +13,7 @@ export const Route = createFileRoute("/shop")({
   }),
   head: () => ({
     meta: [
-      { title: "Shop — Bellezza" },
+      { title: "Shop — Voguish Moments" },
       { name: "description", content: "Explore expertly crafted fragrances designed to match every mood, moment, and personality." },
     ],
   }),

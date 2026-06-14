@@ -1,7 +1,6 @@
 import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { DEFAULT_HERO_DATA } from "./index";
 import { 
   Check, Sparkles, RefreshCw, Lock, Search, 
   Trash2, ClipboardList, Package, Layers, Calendar, User, Mail,
@@ -15,8 +14,6 @@ import {
   getOrdersDb,
   updateOrderStatusDb,
   deleteOrderDb,
-  getHeroSettingsDb,
-  saveHeroSettingsDb,
 } from "@/lib/api/dbFunctions";
 import { invalidateCache } from "@/lib/productService";
 
@@ -25,7 +22,7 @@ export const Route = createFileRoute("/control_panel")({
 });
 
 type FragranceMode = "OUD_BASE" | "FLORAL_BASE" | "FRUITY_BASE" | "FRESH_BASE";
-type TabName = "orders" | "products" | "hero";
+type TabName = "orders" | "products";
 
 function getStandardPriceForSize(basePrice: number, size: string): number {
   if (size === "10 ml") return Math.round(basePrice * 0.3);
@@ -48,7 +45,6 @@ function ControlPanel() {
   // Core data states
   const [orders, setOrders] = useState<any[]>([]);
   const [products, setProducts] = useState<any[]>([]);
-  const [dbHeroSettings, setDbHeroSettings] = useState<any[]>([]);
   
   // Selected item states
   const [selectedOrder, setSelectedOrder] = useState<any | null>(null);
@@ -76,9 +72,6 @@ function ControlPanel() {
 
   // Display Settings states
   const [prodBadge, setProdBadge] = useState<"No Badge" | "Bestseller" | "Only 2 Left">("No Badge");
-  const [featuredOnHomepage, setFeaturedOnHomepage] = useState(false);
-  const [prodHeroTitle, setProdHeroTitle] = useState("");
-  const [prodHeroDesc, setProdHeroDesc] = useState("");
   const [activeSizes, setActiveSizes] = useState<string[]>(["10 ml", "15 ml", "50 ml", "100 ml"]);
 
   // Media handlers
@@ -184,9 +177,6 @@ function ControlPanel() {
     }
     
     setProdBadge(p.badge || "No Badge");
-    setFeaturedOnHomepage(p.featuredOnHomepage || false);
-    setProdHeroTitle(p.heroTitle || "");
-    setProdHeroDesc(p.heroDescription || "");
     
     const formElement = document.getElementById("perfume-form-container");
     if (formElement) {
@@ -208,23 +198,13 @@ function ControlPanel() {
     setProdGalleryUrlInput("");
     setSizePriceInputs({});
     setProdBadge("No Badge");
-    setFeaturedOnHomepage(false);
-    setProdHeroTitle("");
-    setProdHeroDesc("");
     setActiveSizes(["10 ml", "15 ml", "50 ml", "100 ml"]);
   };
-
-  // Homepage hero form states
-  const [activeHeroTab, setActiveHeroTab] = useState<FragranceMode>("OUD_BASE");
-  const [heroTitle, setHeroTitle] = useState("");
-  const [heroDescription, setHeroDescription] = useState("");
-  const [heroFeaturedSlug, setHeroFeaturedSlug] = useState("");
-  const [heroSuccess, setHeroSuccess] = useState<string | null>(null);
 
   // Auth checking
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const isAuth = sessionStorage.getItem("bellezza_control_panel_auth") === "true";
+      const isAuth = sessionStorage.getItem("voguishmoments_control_panel_auth") === "true";
       if (isAuth) {
         setIsAuthenticated(true);
       }
@@ -253,18 +233,6 @@ function ControlPanel() {
     }
   }, [isAuthenticated]);
 
-  // Load hero values when hero base tab changes
-  useEffect(() => {
-    if (isAuthenticated) {
-      const defaults = DEFAULT_HERO_DATA[activeHeroTab];
-      const match = dbHeroSettings.find((h) => h.mode === activeHeroTab);
-      
-      setHeroTitle(match?.title || defaults.title);
-      setHeroDescription(match?.description || defaults.description);
-      setHeroFeaturedSlug(match?.featured_slug || defaults.featuredSlug);
-    }
-  }, [activeHeroTab, dbHeroSettings, isAuthenticated]);
-
   const loadData = () => {
     getOrdersDb()
       .then((loadedOrders) => {
@@ -283,12 +251,6 @@ function ControlPanel() {
         setProducts(loadedProducts);
       })
       .catch((err) => console.error("Failed to load products:", err));
-
-    getHeroSettingsDb()
-      .then((settings) => {
-        setDbHeroSettings(settings);
-      })
-      .catch((err) => console.error("Failed to load hero settings:", err));
   };
 
   const handleLogin = (e: React.FormEvent) => {
@@ -296,7 +258,7 @@ function ControlPanel() {
     if (passcode === "5555") {
       setIsAuthenticated(true);
       setAuthError(false);
-      sessionStorage.setItem("bellezza_control_panel_auth", "true");
+      sessionStorage.setItem("voguishmoments_control_panel_auth", "true");
     } else {
       setAuthError(true);
       setPasscode("");
@@ -305,7 +267,7 @@ function ControlPanel() {
 
   const handleLogout = () => {
     setIsAuthenticated(false);
-    sessionStorage.removeItem("bellezza_control_panel_auth");
+    sessionStorage.removeItem("voguishmoments_control_panel_auth");
   };
 
   // Orders handlers
@@ -344,7 +306,7 @@ function ControlPanel() {
       .replace(/[\s_-]+/g, "-")
       .replace(/^-+|-+$/g, "");
 
-    let baseEnum: FragranceMode = "OUD_BASE";
+    let baseEnum: string = "OUD_BASE";
     if (prodBase === "Floral Base") baseEnum = "FLORAL_BASE";
     if (prodBase === "Fruity Base") baseEnum = "FRUITY_BASE";
     if (prodBase === "Fresh Base") baseEnum = "FRESH_BASE";
@@ -380,24 +342,11 @@ function ControlPanel() {
       isCustom: true,
       pricing: Object.keys(pricing).length > 0 ? pricing : undefined,
       badge: prodBadge !== "No Badge" ? prodBadge : undefined,
-      featuredOnHomepage,
-      heroTitle: featuredOnHomepage ? prodHeroTitle.trim() : undefined,
-      heroDescription: featuredOnHomepage ? prodHeroDesc.trim() : undefined,
+      featuredOnHomepage: false,
     };
 
     createOrUpdateProductDb({ data: payload })
       .then(async () => {
-        if (featuredOnHomepage) {
-          await saveHeroSettingsDb({
-            data: {
-              mode: baseEnum,
-              title: prodHeroTitle.trim(),
-              description: prodHeroDesc.trim(),
-              featuredSlug: payload.slug,
-            },
-          });
-        }
-        
         invalidateCache();
         setProductSuccess(`Successfully saved perfume "${prodName}"!`);
         cancelEditing();
@@ -424,53 +373,6 @@ function ControlPanel() {
         console.error("Failed to delete product:", err);
         alert("Failed to delete product.");
       });
-  };
-
-  // Hero customizer handlers
-  const handleSaveHero = (e: React.FormEvent) => {
-    e.preventDefault();
-    saveHeroSettingsDb({
-      data: {
-        mode: activeHeroTab,
-        title: heroTitle,
-        description: heroDescription,
-        featuredSlug: heroFeaturedSlug,
-      },
-    })
-      .then(() => {
-        invalidateCache();
-        setHeroSuccess(`Homepage settings for ${activeHeroTab.replace("_", " ")} saved!`);
-        setTimeout(() => setHeroSuccess(null), 3500);
-      })
-      .catch((err) => {
-        console.error("Failed to save hero settings:", err);
-        alert("Failed to save homepage settings.");
-      });
-  };
-
-  const handleResetHero = () => {
-    if (confirm(`Reset ${activeHeroTab.replace("_", " ")} settings to default copy?`)) {
-      const defaults = DEFAULT_HERO_DATA[activeHeroTab];
-      saveHeroSettingsDb({
-        data: {
-          mode: activeHeroTab,
-          title: defaults.title,
-          description: defaults.description,
-          featuredSlug: defaults.featuredSlug,
-        },
-      })
-        .then(() => {
-          invalidateCache();
-          setHeroTitle(defaults.title);
-          setHeroDescription(defaults.description);
-          setHeroFeaturedSlug(defaults.featuredSlug);
-          setHeroSuccess(`Reset ${activeHeroTab.replace("_", " ")} defaults.`);
-          setTimeout(() => setHeroSuccess(null), 3500);
-        })
-        .catch((err) => {
-          console.error("Failed to reset hero settings:", err);
-        });
-    }
   };
 
   // Lock screen view
@@ -542,7 +444,7 @@ function ControlPanel() {
           <div className="flex flex-col gap-4 md:space-y-8 w-full">
             <div className="flex justify-between items-center w-full md:block">
               <div>
-                <div className="font-display text-lg md:text-xl text-[#1c1917]">Eunoia Studio</div>
+                <div className="font-display text-lg md:text-xl text-[#1c1917]">Voguish Moments</div>
                 <div className="text-[8px] md:text-[9px] tracking-widest text-muted-foreground font-bold uppercase mt-0.5">
                   Management Console
                 </div>
@@ -1246,59 +1148,6 @@ function ControlPanel() {
                           ))}
                         </div>
                       </div>
-
-                      {/* FEATURED ON HOMEPAGE TOGGLE */}
-                      <div className="flex items-center justify-between py-2 border-b border-[#FAF9F5]">
-                        <div className="space-y-0.5">
-                          <div className="text-[11px] font-semibold text-foreground">Featured on Homepage</div>
-                          <div className="text-[9px] text-muted-foreground">Use this perfume as homepage category hero banner.</div>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setFeaturedOnHomepage(!featuredOnHomepage)}
-                          className={`w-10 h-5.5 rounded-full transition-colors relative outline-none cursor-pointer ${
-                            featuredOnHomepage ? 'bg-[#A28F79]' : 'bg-stone-200'
-                          }`}
-                        >
-                          <span
-                            className={`absolute top-0.5 left-0.5 w-4.5 h-4.5 rounded-full bg-white transition-transform ${
-                              featuredOnHomepage ? 'translate-x-4.5' : 'translate-x-0'
-                            }`}
-                          />
-                        </button>
-                      </div>
-
-                      {/* CONDITIONAL HERO INPUTS */}
-                      {featuredOnHomepage && (
-                        <div className="p-3.5 bg-[#FAF9F5]/60 border border-border rounded-xl space-y-3 animate-fade-up">
-                          <div>
-                            <label className="block text-[9px] tracking-wider text-muted-foreground font-bold uppercase mb-1">
-                              Hero Title (use \n for line breaks)
-                            </label>
-                            <input
-                              type="text"
-                              required
-                              value={prodHeroTitle}
-                              onChange={(e) => setProdHeroTitle(e.target.value)}
-                              placeholder="e.g. Our Exclusive\nPerfume Divorce"
-                              className="w-full bg-white border border-border rounded-xl px-3 py-2 text-xs outline-none focus:ring-1 focus:ring-accent"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-[9px] tracking-wider text-muted-foreground font-bold uppercase mb-1">
-                              Hero Description
-                            </label>
-                            <textarea
-                              required
-                              rows={2}
-                              value={prodHeroDesc}
-                              onChange={(e) => setProdHeroDesc(e.target.value)}
-                              placeholder="Experience the warmth of..."
-                              className="w-full bg-white border border-border rounded-xl px-3 py-2 text-xs outline-none focus:ring-1 focus:ring-accent resize-none leading-relaxed"
-                            />
-                          </div>
-                        </div>
-                      )}
 
                       {/* END DISPLAY SETTINGS */}
                     </div>

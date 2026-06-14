@@ -4,6 +4,49 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'Gotham';
+  src: url('./assets/fonts/Gotham-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('./assets/fonts/Gotham-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('./assets/fonts/GothamLightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('./assets/fonts/Gotham-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gotham';
+  src: url('./assets/fonts/Gotham-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Didot';
+  src: url('./assets/fonts/DIDOT_ITALIC.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -28,14 +71,13 @@
   --color-ring: var(--ring);
   --color-cream: var(--cream);
   --color-blush: var(--blush);
-  --font-display: var(--font-display);
-  --font-sans: var(--font-sans);
+  --font-display: "Gotham", "Poppins", sans-serif;
+  --font-sans: "Gotham", "Poppins", sans-serif;
+  --font-serif: "Didot", serif;
 }
 
 :root {
   --radius: 0.75rem;
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-sans: "Poppins", system-ui, sans-serif;
 
   --background: oklch(0.985 0.005 80);
   --foreground: oklch(0.18 0.01 60);
@@ -63,9 +105,18 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 300;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+  h1, h2, h3, h4, h5, h6 { 
+    font-family: var(--font-display); 
+    font-weight: 400; 
+    letter-spacing: 0.05em; 
+  }
+  i, em, .font-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
 }
 
 @keyframes spin-slow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
@@ -84,4 +135,23 @@
   .mode-selection-bg {
     background-image: var(--bg-desktop);
   }
+}
+
+/* Loop marquee keyframes and classes */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes marquee2 {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-marquee2 {
+  animation: marquee2 20s linear infinite;
 }

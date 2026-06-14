@@ -6,8 +6,8 @@ import { SiteLayout } from "@/components/SiteLayout";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us — Bellezza" },
-      { name: "description", content: "Get in touch with the Bellezza team." },
+      { title: "Contact Us — Voguish Moments" },
+      { name: "description", content: "Get in touch with the Voguish Moments team." },
     ],
   }),
   component: ContactPage,

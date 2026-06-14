@@ -13,18 +13,36 @@ export function startPreloading(): Promise<Product[]> {
     return preloaderPromise;
   }
 
-  console.log("[ProductService] Starting background product preload from database...");
-  preloaderPromise = getProductsDb()
-    .then((products) => {
-      productCache = products;
-      console.log(`[ProductService] Background preload success! Cached ${products.length} products.`);
-      return products;
-    })
-    .catch((error) => {
-      console.error("[ProductService] Background preload failed:", error);
-      preloaderPromise = null;
-      throw error;
-    });
+  // Create deferred promise resolver and rejecter
+  let resolvePromise: (value: Product[]) => void = () => {};
+  let rejectPromise: (reason: any) => void = () => {};
+
+  preloaderPromise = new Promise<Product[]>((resolve, reject) => {
+    resolvePromise = resolve;
+    rejectPromise = reject;
+  });
+
+  const performFetch = () => {
+    console.log("[ProductService] Starting background product preload softly when thread is idle...");
+    getProductsDb()
+      .then((products) => {
+        productCache = products;
+        console.log(`[ProductService] Background preload success! Cached ${products.length} products.`);
+        resolvePromise(products);
+      })
+      .catch((error) => {
+        console.error("[ProductService] Background preload failed:", error);
+        preloaderPromise = null;
+        rejectPromise(error);
+      });
+  };
+
+  // Schedule preloading softly in the background when the main thread is idle
+  if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+    (window as any).requestIdleCallback(() => performFetch(), { timeout: 2000 });
+  } else {
+    setTimeout(performFetch, 1000);
+  }
 
   return preloaderPromise;
 }

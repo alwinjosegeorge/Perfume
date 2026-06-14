@@ -13,7 +13,7 @@ export const Route = createFileRoute("/search")({
     q: typeof s.q === "string" ? s.q : undefined,
   }),
   head: () => ({
-    meta: [{ title: "Search — Bellezza" }, { name: "description", content: "Search Bellezza products." }],
+    meta: [{ title: "Search — Voguish Moments" }, { name: "description", content: "Search Voguish Moments signature perfumes." }],
   }),
   component: SearchPage,
 });
@@ -51,7 +51,7 @@ function SearchPage() {
           <input
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder="Search for products…"
+            placeholder="Search for perfumes…"
             className="flex-1 bg-transparent px-4 py-2 outline-none"
             autoFocus
           />

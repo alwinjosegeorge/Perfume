@@ -12,10 +12,10 @@ const NAV: Array<{ label: string; to: string }> = [
   { label: "Contact Us", to: "/contact" },
 ];
 
-export function BellezzaLogo() {
+export function VoguishMomentsLogo() {
   return (
     <Link to="/" className="flex items-center">
-      <img src={logoImg} alt="Bellezza Logo" className="h-7 md:h-10 w-auto object-contain" />
+      <img src={logoImg} alt="Voguish Moments Logo" className="h-7 md:h-10 w-auto object-contain" />
     </Link>
   );
 }
@@ -60,21 +60,27 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/40">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-        <BellezzaLogo />
-        <nav className="hidden lg:flex items-center gap-9 text-[15px] font-medium">
-          {NAV.map((n) => (
-            <Link
-              key={n.to}
-              to={n.to}
-              activeOptions={{ exact: n.to === "/" }}
-              activeProps={{ className: "text-accent" }}
-              className="hover:text-accent transition-colors"
-            >
-              {n.label}
-            </Link>
-          ))}
-        </nav>
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between relative">
+        <div className="flex items-center">
+          <nav className="hidden lg:flex items-center gap-9 text-[15px] font-medium">
+            {NAV.map((n) => (
+              <Link
+                key={n.to}
+                to={n.to}
+                activeOptions={{ exact: n.to === "/" }}
+                activeProps={{ className: "text-accent" }}
+                className="hover:text-accent transition-colors"
+              >
+                {n.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <VoguishMomentsLogo />
+        </div>
+
         <div className="flex items-center gap-5">
           {/* Mode Selector Dropdown */}
           <div ref={dropdownRef} className="relative hidden md:block">

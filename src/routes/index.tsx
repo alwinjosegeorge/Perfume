@@ -7,7 +7,6 @@ import { ProductCard } from "@/components/ProductCard";
 import { PRODUCTS } from "@/data/catalog";
 import { useMode } from "@/context/ModeContext";
 import { getProducts } from "@/lib/productService";
-import { getHeroSettingsDb } from "@/lib/api/dbFunctions";
 
 import p1 from "@/assets/product-1.jpg";
 import p2 from "@/assets/product-2.jpg";
@@ -17,11 +16,11 @@ import divorceHero from "@/assets/divorce-hero.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Bellezza — Where Natural Beauty Begins" },
+      { title: "Voguish Moments — Where Luxury Perfume Begins" },
       {
         name: "description",
         content:
-          "Elevate your glow with beauty essentials. Shop the latest must-haves in one chic storefront.",
+          "Discover Voguish Moments signature perfumes, crafted with high-grade ingredients sourced from France by Raa.",
       },
     ],
   }),
@@ -66,27 +65,20 @@ export const DEFAULT_HERO_DATA: Record<string, HeroData> = {
   },
 };
 
-function Hero({ allProducts, heroSettings }: { allProducts: any[]; heroSettings: any[] }) {
+function Hero({ allProducts }: { allProducts: any[] }) {
   const { mode } = useMode();
   const activeMode = mode || "OUD_BASE";
 
   const defaults = DEFAULT_HERO_DATA[activeMode] || DEFAULT_HERO_DATA.OUD_BASE;
-  const customSetting = heroSettings.find((h) => h.mode === activeMode);
 
   let resolvedTitle = defaults.title;
   let resolvedDesc = defaults.description;
   let resolvedSlug = defaults.featuredSlug;
   let resolvedImg = defaults.img;
 
-  if (customSetting) {
-    resolvedTitle = customSetting.title || defaults.title;
-    resolvedDesc = customSetting.description || defaults.description;
-    resolvedSlug = customSetting.featured_slug || defaults.featuredSlug;
-  }
-
   const match = allProducts.find((p) => p.slug === resolvedSlug);
   if (match) {
-    resolvedImg = match.img;
+    resolvedImg = resolvedSlug === "divorce-perfume" ? divorceHero : match.img;
   }
 
   const data = {
@@ -150,9 +142,9 @@ function Hero({ allProducts, heroSettings }: { allProducts: any[]; heroSettings:
           <Link
             to="/product/$slug"
             params={{ slug: data.featuredSlug }}
-            className="relative mx-auto w-full max-w-[560px] aspect-[4/5] block cursor-pointer group/heroimg"
+            className="relative mx-auto w-full max-w-[450px] aspect-square block cursor-pointer group/heroimg"
           >
-            <div className="absolute inset-0 overflow-hidden bg-cream group-hover/heroimg:scale-[1.01] transition-transform duration-500 rounded-3xl border border-border/80">
+            <div className="absolute inset-0 overflow-hidden bg-cream group-hover/heroimg:scale-[1.01] transition-transform duration-500 rounded-none border border-border/80">
               <img
                 src={data.img}
                 alt="Voguish Moments perfume"
@@ -163,6 +155,7 @@ function Hero({ allProducts, heroSettings }: { allProducts: any[]; heroSettings:
             </div>
           </Link>
         </div>
+
       </div>
     </section>
   );
@@ -172,15 +165,11 @@ function Home() {
   const { mode } = useMode();
   const activeMode = mode || "OUD_BASE";
   const [allProducts, setAllProducts] = useState<any[]>(PRODUCTS);
-  const [heroSettings, setHeroSettings] = useState<any[]>([]);
 
   useEffect(() => {
     let active = true;
     getProducts().then((data) => {
       if (active) setAllProducts(data);
-    });
-    getHeroSettingsDb().then((settings) => {
-      if (active) setHeroSettings(settings);
     });
     return () => {
       active = false;
@@ -206,12 +195,12 @@ function Home() {
 
   return (
     <SiteLayout>
-      <Hero allProducts={allProducts} heroSettings={heroSettings} />
+      <Hero allProducts={allProducts} />
 
       {/* Mode-Specific Showcase */}
       <section className="py-16">
         <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
-          <h2 className="text-center text-4xl md:text-5xl mb-12">
+          <h2 className="text-center font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-12">
             {getModeHeading(activeMode)}
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -225,7 +214,7 @@ function Home() {
       {/* Global Combined Showcase Link above Footer */}
       <section className="py-20 bg-cream/30 border-t border-border/40 text-center">
         <div className="max-w-xl mx-auto px-6">
-          <h2 className="font-display text-3xl md:text-4xl mb-4">Our Fragrance Library</h2>
+          <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-4">Our Fragrance Library</h2>
           <p className="text-sm text-muted-foreground leading-relaxed mb-8">
             Discover our entire range of exceptional perfumes from all bases, crafted with premium ingredients and long-lasting concentration.
           </p>

@@ -8,7 +8,7 @@ import { createOrderDb } from "@/lib/api/dbFunctions";
 export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
-      { title: "Cart — Bellezza" },
+      { title: "Cart — Voguish Moments" },
       { name: "description", content: "Review the items in your shopping bag." },
     ],
   }),
@@ -128,7 +128,7 @@ function CartPage() {
       key: "rzp_test_dummy_key", // Placeholder: User will change this later
       amount: total * 100, // in paise
       currency: "INR",
-      name: "Bellezza Perfumes",
+      name: "Voguish Moments Perfumes",
       description: `Order Checkout Payment - ${orderId}`,
       handler: function (response: any) {
         const paymentId = response.razorpay_payment_id || `pay_mock_${Math.random().toString(36).substring(2, 9)}`;

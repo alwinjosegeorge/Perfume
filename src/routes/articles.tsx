@@ -7,8 +7,8 @@ import { ARTICLES } from "@/data/catalog";
 export const Route = createFileRoute("/articles")({
   head: () => ({
     meta: [
-      { title: "Articles — Bellezza" },
-      { name: "description", content: "Beauty secrets, how-to guides, and the latest trends from Bellezza." },
+      { title: "Articles — Voguish Moments" },
+      { name: "description", content: "Fragrance guides, perfume notes, and the latest trends from Voguish Moments." },
     ],
   }),
   component: ArticlesPage,

@@ -1,7 +1,9 @@
 import { createServerFn } from "@tanstack/react-start";
 import { pool } from "../db.server";
-import { Product } from "@/data/catalog";
+import { Product, getMergedProducts, PRODUCTS } from "@/data/catalog";
 import { z } from "zod";
+import path from "path";
+import fs from "fs/promises";
 
 function mapDbProduct(row: any): Product {
   return {
@@ -27,12 +29,43 @@ function mapDbProduct(row: any): Product {
 
 export const getProductsDb = createServerFn({ method: "GET" })
   .handler(async () => {
-    const res = await pool.query("SELECT * FROM products ORDER BY id ASC");
-    return res.rows.map(mapDbProduct);
+    const filePath = path.resolve(process.cwd(), "src/data/custom_products.json");
+    let custom: any[] = [];
+    try {
+      const raw = await fs.readFile(filePath, "utf-8");
+      custom = JSON.parse(raw);
+    } catch (e) {
+      custom = [];
+    }
+
+    const mapped = custom.map((c) => ({
+      slug: c.slug,
+      name: c.name,
+      category: c.category,
+      price: c.price,
+      priceLabel: `₹${c.price.toLocaleString("en-IN")}`,
+      img: c.img,
+      hr: c.hr || "12 HR",
+      description: c.description,
+      base: c.base,
+      isCustom: true,
+      pricing: c.pricing,
+      badge: c.badge,
+      featuredOnHomepage: c.featuredOnHomepage || false,
+      heroTitle: c.heroTitle,
+      heroDescription: c.heroDescription,
+      hoverImg: c.hoverImg,
+      gallery: c.gallery || [],
+    }));
+
+    const customSlugs = mapped.map((p) => p.slug);
+    const baseProducts = PRODUCTS.filter((p) => !customSlugs.includes(p.slug));
+
+    return [...baseProducts, ...mapped];
   });
 
 export const createOrUpdateProductDb = createServerFn({ method: "POST" })
-  .input(
+  .validator(
     z.object({
       slug: z.string(),
       name: z.string(),
@@ -52,63 +85,65 @@ export const createOrUpdateProductDb = createServerFn({ method: "POST" })
       gallery: z.array(z.string()).optional(),
     })
   )
-  .handler(async ({ input }) => {
-    const res = await pool.query(
-      `
-      INSERT INTO products (
-        slug, name, category, price, img, hr, description, base, 
-        is_custom, pricing, badge, featured_on_homepage, hero_title, 
-        hero_description, hover_img, gallery
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
-      ON CONFLICT (slug) DO UPDATE SET
-        name = EXCLUDED.name,
-        category = EXCLUDED.category,
-        price = EXCLUDED.price,
-        img = EXCLUDED.img,
-        hr = EXCLUDED.hr,
-        description = EXCLUDED.description,
-        base = EXCLUDED.base,
-        is_custom = EXCLUDED.is_custom,
-        pricing = EXCLUDED.pricing,
-        badge = EXCLUDED.badge,
-        featured_on_homepage = EXCLUDED.featured_on_homepage,
-        hero_title = EXCLUDED.hero_title,
-        hero_description = EXCLUDED.hero_description,
-        hover_img = EXCLUDED.hover_img,
-        gallery = EXCLUDED.gallery
-      RETURNING *
-    `,
-      [
-        input.slug,
-        input.name,
-        input.category,
-        input.price,
-        input.img,
-        input.hr || "12 HR",
-        input.description || null,
-        input.base || null,
-        input.isCustom || false,
-        input.pricing ? JSON.stringify(input.pricing) : null,
-        input.badge || null,
-        input.featuredOnHomepage || false,
-        input.heroTitle || null,
-        input.heroDescription || null,
-        input.hoverImg || null,
-        JSON.stringify(input.gallery || []),
-      ]
-    );
-    return mapDbProduct(res.rows[0]);
+  .handler(async ({ data }) => {
+    const filePath = path.resolve(process.cwd(), "src/data/custom_products.json");
+    let list: any[] = [];
+    try {
+      const raw = await fs.readFile(filePath, "utf-8");
+      list = JSON.parse(raw);
+    } catch (e) {
+      list = [];
+    }
+
+    const index = list.findIndex((p) => p.slug === data.slug);
+    const mappedProduct = {
+      slug: data.slug,
+      name: data.name,
+      category: data.category,
+      price: data.price,
+      img: data.img,
+      hr: data.hr || "12 HR",
+      description: data.description || "",
+      base: data.base,
+      isCustom: true,
+      pricing: data.pricing || undefined,
+      badge: data.badge || undefined,
+      featuredOnHomepage: data.featuredOnHomepage || false,
+      heroTitle: data.heroTitle || undefined,
+      heroDescription: data.heroDescription || undefined,
+      hoverImg: data.hoverImg || undefined,
+      gallery: data.gallery || [],
+    };
+
+    if (index >= 0) {
+      list[index] = mappedProduct;
+    } else {
+      list.push(mappedProduct);
+    }
+
+    await fs.writeFile(filePath, JSON.stringify(list, null, 2), "utf-8");
+    return mappedProduct;
   });
 
 export const deleteProductDb = createServerFn({ method: "POST" })
-  .input(z.object({ slug: z.string() }))
-  .handler(async ({ input }) => {
-    await pool.query("DELETE FROM products WHERE slug = $1", [input.slug]);
+  .validator(z.object({ slug: z.string() }))
+  .handler(async ({ data }) => {
+    const filePath = path.resolve(process.cwd(), "src/data/custom_products.json");
+    let list: any[] = [];
+    try {
+      const raw = await fs.readFile(filePath, "utf-8");
+      list = JSON.parse(raw);
+    } catch (e) {
+      list = [];
+    }
+
+    const filtered = list.filter((p) => p.slug !== data.slug);
+    await fs.writeFile(filePath, JSON.stringify(filtered, null, 2), "utf-8");
     return { success: true };
   });
 
 export const createOrderDb = createServerFn({ method: "POST" })
-  .input(
+  .validator(
     z.object({
       id: z.string(),
       customerName: z.string(),
@@ -129,7 +164,8 @@ export const createOrderDb = createServerFn({ method: "POST" })
       dateString: z.string().optional().nullable(),
     })
   )
-  .handler(async ({ input }) => {
+  .handler(async ({ data }) => {
+    const input = data;
     await pool.query(
       `
       INSERT INTO orders (
@@ -184,46 +220,19 @@ export const getOrdersDb = createServerFn({ method: "GET" })
   });
 
 export const updateOrderStatusDb = createServerFn({ method: "POST" })
-  .input(z.object({ id: z.string(), status: z.string() }))
-  .handler(async ({ input }) => {
+  .validator(z.object({ id: z.string(), status: z.string() }))
+  .handler(async ({ data }) => {
+    const input = data;
     await pool.query("UPDATE orders SET status = $1 WHERE id = $2", [input.status, input.id]);
     return { success: true };
   });
 
 export const deleteOrderDb = createServerFn({ method: "POST" })
-  .input(z.object({ id: z.string() }))
-  .handler(async ({ input }) => {
+  .validator(z.object({ id: z.string() }))
+  .handler(async ({ data }) => {
+    const input = data;
     await pool.query("DELETE FROM orders WHERE id = $1", [input.id]);
     return { success: true };
   });
 
-export const getHeroSettingsDb = createServerFn({ method: "GET" })
-  .handler(async () => {
-    const res = await pool.query("SELECT * FROM hero_settings");
-    return res.rows;
-  });
 
-export const saveHeroSettingsDb = createServerFn({ method: "POST" })
-  .input(
-    z.object({
-      mode: z.string(),
-      title: z.string(),
-      description: z.string(),
-      featuredSlug: z.string(),
-    })
-  )
-  .handler(async ({ input }) => {
-    await pool.query(
-      `
-      INSERT INTO hero_settings (mode, title, description, featured_slug, updated_at)
-      VALUES ($1, $2, $3, $4, NOW())
-      ON CONFLICT (mode) DO UPDATE SET
-        title = EXCLUDED.title,
-        description = EXCLUDED.description,
-        featured_slug = EXCLUDED.featured_slug,
-        updated_at = NOW()
-    `,
-      [input.mode, input.title, input.description, input.featuredSlug]
-    );
-    return { success: true };
-  });

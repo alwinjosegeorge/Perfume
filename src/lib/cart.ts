@@ -5,7 +5,7 @@ import { getProductsSync } from "./productService";
 
 export type CartItem = { slug: string; qty: number; size: string };
 
-const KEY = "bellezza-cart";
+const KEY = "voguishmoments-cart";
 
 function read(): CartItem[] {
   if (typeof window === "undefined") return [];
