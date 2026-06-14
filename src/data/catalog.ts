@@ -19,6 +19,7 @@ import nakedNoise10mlImg from "@/assets/naked-noise-10ml.png";
 import noExit10mlImg from "@/assets/no-exit-10ml.png";
 import scukEyes10mlImg from "@/assets/scuk-eyes-10ml.png";
 import scukEyesImg from "@/assets/scuk-eyes.jpeg";
+import divorce15mlImg from "@/assets/divorce-15ml.png";
 
 export type Product = {
   slug: string;
@@ -52,7 +53,8 @@ export const PRODUCTS: Product[] = [
     hr: "24 HR",
     description: "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ ഏഴ് മാസത്തോളമായി ഞങ്ങൾ ഇത് ലോഞ്ച് ചെയ്തിട്ട്. എന്താണ് ഇതിന്റെ ফീൽ? ഒരു വലിയ തറവാട്ടിൽ ഒരുപാട് പൈസയുള്ള ആളെപ്പോലെ. ഒരു 4000 രൂപയുടെ പെർഫ്യൂം ആണ് അടിച്ചിരിക്കുന്നത് എന്ന് മറ്റുള്ളവർക്ക് തോന്നും. ഒരാൾ വന്ന് ഹഗ്ഗ് ചെയ്താൽ പോലും ഈ സുഗന്ധം അവരുടെ ഡ്രസ്സിലോട്ട് പകരും. നമ്മൾ എവിടെ നിൽക്കുകയാണോ അവിടെ നിന്ന് മാറിയാൽ പോലും ആ ഏരിയയിൽ ഈ സുഗന്ധം തങ്ങിനിൽക്കും. ഞങ്ങളുടെ പെർഫ്യൂമിൽ ഏറ്റവും മികച്ചത്. ഒരു പുതിയ കസ്റ്റമർ വരികയാണെങ്കിൽ അവരുടെ ഡ്രസ്സിൽ അടിച്ചതിനു ശേഷം അവരെ പറഞ്ഞുവിടും, 'നിങ്ങൾ ഇപ്പോൾ ഇത് വാങ്ങണ്ട. വീട്ടിൽ പോയി നാളെ ചെക്ക് ചെയ്തതിനു ശേഷം നാളെ മണം നിൽക്കുന്നുണ്ടെങ്കിൽ മാത്രം വാങ്ങിയാൽ മതി' എന്ന്. ഇതാണ് ഞങ്ങളുടെ കോൺഫിഡൻസ്. നമുക്ക് ആരും പെർമനന്റ് അല്ല, ഈ മണമെങ്കിലും ഒരു ദിവസം നിൽക്കുന്നുണ്ട്, അല്ലേ സന്തോഷം?",
     base: "OUD_BASE",
-    pricing: { "15 ml": 600, "50 ml": 1400 }
+    pricing: { "15 ml": 600, "50 ml": 1400 },
+    gallery: [divorce15mlImg]
   },
   {
     slug: "ego",
@@ -77,7 +79,7 @@ export const PRODUCTS: Product[] = [
     hr: "5 HR",
     description: "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ. ഒരു ടുബാക്കോ പെർഫ്യൂം കരിഞ്ഞ ഇലകൾ ചന്ദനം മെക്സിക്കൻ ടുബാക്കോ വെൽവെറ്റ് വാനില ഇവയെല്ലാം ചേർന്ന സ്മോക്കി ഫീൽ തരുന്ന ഒരു മസ്കുലിൻ പെർഫ്യൂം. എസി കാറിൽ ഇത് ഉപയോഗിച്ചു പുറത്തിറങ്ങുന്ന സമയം പാർക്കിംഗ് സൈഡിൽ ഉള്ള ആളുകൾക്ക് വിളിച്ചുണർത്തി നിങ്ങളോട് ചോദിക്കാൻ ആഗ്രഹപ്പെടുന്ന ഒന്ന്. കണ്ണുകൾ അടച്ച് ഈ പെർഫ്യൂം സുഗന്ധം നിഫ് ചെയ്യുമ്പോൾ ഒരു ശാന്തത സമാധാനം നിങ്ങൾക്ക് അനുഭവിച്ചറിയാൻ സാധിക്കുന്നുണ്ടെങ്കിൽ നിങ്ങൾ ഇതിന്റെ വശ്യ മനോഹാരിതയിൽ അടിമപ്പെട്ടു പോകുക തന്നെ ചെയ്യും . ഒരു പുരുഷന്റെ സുഗന്ധം വിലകുറഞ്ഞ പുരുഷനെ അല്ല പറഞ്ഞത് ഒരു ബെൻഡ്ലി കാറിൽ സ്യൂട്ട് ആയി വന്നിറങ്ങിയ ഒരു പുരുഷനെ കുറിച്ച്",
     base: "OUD_BASE",
-    pricing: { "10 ml": 500, "50 ml": 1200 }
+    pricing: { "50 ml": 1200 }
   },
   {
     slug: "no-exit",
@@ -160,6 +162,12 @@ export const PRODUCT_IMAGES: Record<string, string> = {
   "no-exit": noExitImg,
   "ego": egoImg,
   "burning-attraction": burningAttractionImg,
+  "ego-10ml": ego10mlImg,
+  "naked-noise-10ml": nakedNoise10mlImg,
+  "no-exit-10ml": noExit10mlImg,
+  "scuk-eyes-10ml": scukEyes10mlImg,
+  "scuk-eyes": scukEyesImg,
+  "divorce-15ml": divorce15mlImg,
 };
 
 export function getMergedProducts(): Product[] {
