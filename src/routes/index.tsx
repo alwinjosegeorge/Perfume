@@ -36,28 +36,28 @@ export interface HeroData {
 
 export const DEFAULT_HERO_DATA: Record<string, HeroData> = {
   OUD_BASE: {
-    title: "Our Exclusive\nPerfume Divorce",
+    title: "OUR EXCLUSIVE PARFUM\nDIVORCE",
     description:
       "Elevate your glow with beauty essentials, shop the latest must-haves in one chic storefront.",
     featuredSlug: "divorce-perfume",
     img: divorceHero,
   },
   FLORAL_BASE: {
-    title: "Our Exclusive\nRose Chiffon",
+    title: "OUR EXCLUSIVE PARFUM\nROSE CHIFFON",
     description:
       "Elegant blooming roses, sweet pink peony, and a touch of warm white musk absolute.",
     featuredSlug: "rose-chiffon",
     img: p1,
   },
   FRUITY_BASE: {
-    title: "Our Exclusive\nPeach Nectar",
+    title: "OUR EXCLUSIVE PARFUM\nPEACH NECTAR",
     description:
       "Sweet sun-ripened peach, juicy apricot nectar, and sparkling mandarin zest.",
     featuredSlug: "peach-nectar",
     img: p2,
   },
   FRESH_BASE: {
-    title: "Our Exclusive\nOcean Breeze",
+    title: "OUR EXCLUSIVE PARFUM\nOCEAN BREEZE",
     description:
       "Crisp sea salt, cool marine accords, and sun-bleached driftwood absolute.",
     featuredSlug: "ocean-breeze",
@@ -89,12 +89,20 @@ function Hero({ allProducts }: { allProducts: any[] }) {
   };
 
   const renderTitle = (title: string) => {
-    return title.split("\n").map((line, index) => (
-      <span key={index}>
-        {line}
-        {index < title.split("\n").length - 1 && <br />}
-      </span>
-    ));
+    const lines = title.split("\n");
+    if (lines.length > 1) {
+      return (
+        <span className="flex flex-col gap-3 lg:gap-4">
+          <span className="text-sm md:text-base lg:text-lg font-light tracking-[0.25em] uppercase text-muted-foreground block">
+            {lines[0]}
+          </span>
+          <span className="text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight uppercase text-foreground block leading-none">
+            {lines[1]}
+          </span>
+        </span>
+      );
+    }
+    return <span>{title}</span>;
   };
 
   return (
@@ -109,10 +117,10 @@ function Hero({ allProducts }: { allProducts: any[] }) {
       />
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 pt-6 lg:pt-10 pb-12 lg:pb-20 grid lg:grid-cols-2 gap-10 items-center relative">
         <div className="order-2 lg:order-1 animate-fade-up text-center lg:text-left">
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
+          <h1 className="font-display">
             {renderTitle(data.title)}
           </h1>
-          <p className="mt-6 lg:mt-8 text-muted-foreground text-base lg:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
+          <p className="mt-8 text-muted-foreground text-base lg:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
             {data.description}
           </p>
           <div className="mt-8 lg:mt-10 flex items-center gap-6 flex-wrap justify-center lg:justify-start">
