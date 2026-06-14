@@ -38,7 +38,7 @@ export const DEFAULT_HERO_DATA: Record<string, HeroData> = {
   OUD_BASE: {
     title: "OUR EXCLUSIVE PARFUM\nDIVORCE",
     description:
-      "Elevate your glow with beauty essentials, shop the latest must-haves in one chic storefront.",
+      "THE GREATEST DISTANCE IN THE WORLD IS NOT BETWEEN TWO COUNTRIES,\nBUT BETWEEN TWO PEOPLE WHO SPEAK THE SAME LANGUAGE AND STILL FAIL TO UNDERSTAND EACH OTHER.\nTHIS DROP SPEAKS YOUR IDENTITY TO THE PEOPLES",
     featuredSlug: "divorce-perfume",
     img: divorceHero,
   },
@@ -93,10 +93,10 @@ function Hero({ allProducts }: { allProducts: any[] }) {
     if (lines.length > 1) {
       return (
         <span className="flex flex-col gap-3 lg:gap-4">
-          <span className="text-sm md:text-base lg:text-lg font-light tracking-[0.25em] uppercase text-muted-foreground block">
+          <span className="font-hubballi text-sm md:text-base lg:text-lg font-normal tracking-[0.25em] uppercase text-muted-foreground block">
             {lines[0]}
           </span>
-          <span className="text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight uppercase text-foreground block leading-none">
+          <span className="font-futura text-[38px] md:text-7xl lg:text-8xl font-normal uppercase text-foreground block leading-none lg:-ml-[8px]">
             {lines[1]}
           </span>
         </span>
@@ -120,7 +120,7 @@ function Hero({ allProducts }: { allProducts: any[] }) {
           <h1 className="font-display">
             {renderTitle(data.title)}
           </h1>
-          <p className="mt-8 text-muted-foreground text-base lg:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
+          <p className="mt-8 text-muted-foreground text-sm lg:text-base max-w-lg mx-auto lg:mx-0 leading-relaxed whitespace-pre-line">
             {data.description}
           </p>
           <div className="mt-8 lg:mt-10 flex items-center gap-6 flex-wrap justify-center lg:justify-start">

@@ -56,10 +56,14 @@ function ProductPage() {
 
   useEffect(() => {
     if (product) {
-      setActiveMainImage(product.img);
+      if ((selectedSize === "10 ml" || selectedSize === "15 ml") && product.gallery && product.gallery.length > 0) {
+        setActiveMainImage(product.gallery[0]);
+      } else {
+        setActiveMainImage(product.img);
+      }
       setIsExpanded(false);
     }
-  }, [product]);
+  }, [product, selectedSize]);
 
   if (!product) {
     return (
