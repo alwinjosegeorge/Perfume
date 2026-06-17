@@ -36,7 +36,16 @@ function Shop() {
     };
   }, []);
 
-  const list = active === "All" ? allProducts : allProducts.filter((p) => p.category === active);
+  const list = active === "All"
+    ? allProducts
+    : allProducts.filter((p) => {
+        if (p.category === active) return true;
+        if (active === "Oud Base" && p.base === "OUD_BASE") return true;
+        if (active === "Floral Base" && p.base === "FLORAL_BASE") return true;
+        if (active === "Fruity Base" && p.base === "FRUITY_BASE") return true;
+        if (active === "Fresh Base" && p.base === "FRESH_BASE") return true;
+        return false;
+      });
 
   return (
     <SiteLayout>

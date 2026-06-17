@@ -8,9 +8,6 @@ import { PRODUCTS } from "@/data/catalog";
 import { useMode } from "@/context/ModeContext";
 import { getProducts } from "@/lib/productService";
 
-import p1 from "@/assets/product-1.jpg";
-import p2 from "@/assets/product-2.jpg";
-import p3 from "@/assets/product-3.jpg";
 import divorceHero from "@/assets/divorce-hero.jpg";
 
 export const Route = createFileRoute("/")({
@@ -43,25 +40,25 @@ export const DEFAULT_HERO_DATA: Record<string, HeroData> = {
     img: divorceHero,
   },
   FLORAL_BASE: {
-    title: "OUR EXCLUSIVE PARFUM\nROSE CHIFFON",
+    title: "OUR EXCLUSIVE PARFUM\nSEDUCTION",
     description:
-      "Elegant blooming roses, sweet pink peony, and a touch of warm white musk absolute.",
-    featuredSlug: "rose-chiffon",
-    img: p1,
+      "A romantic, mood-enhancing fragrance infused with pheromone molecules designed to create a deep emotional connection.",
+    featuredSlug: "seduction",
+    img: "",
   },
   FRUITY_BASE: {
-    title: "OUR EXCLUSIVE PARFUM\nPEACH NECTAR",
+    title: "OUR EXCLUSIVE PARFUM\nMOOD SWINGS",
     description:
-      "Sweet sun-ripened peach, juicy apricot nectar, and sparkling mandarin zest.",
-    featuredSlug: "peach-nectar",
-    img: p2,
+      "An incredibly long-projecting scent featuring a dynamic profile of shifting mixed fruit notes that diverts your mind.",
+    featuredSlug: "mood-swings",
+    img: "",
   },
   FRESH_BASE: {
-    title: "OUR EXCLUSIVE PARFUM\nOCEAN BREEZE",
+    title: "OUR EXCLUSIVE PARFUM\nDOPAMINE",
     description:
-      "Crisp sea salt, cool marine accords, and sun-bleached driftwood absolute.",
-    featuredSlug: "ocean-breeze",
-    img: p3,
+      "A cool, high-dose fresh citrus blend of mint and green lemon to keep you focused and refreshed all day.",
+    featuredSlug: "dopamine",
+    img: "",
   },
 };
 
