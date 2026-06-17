@@ -108,13 +108,13 @@ function ProductPage() {
 
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
           <div className="grid grid-cols-1 gap-4">
-            <div className="aspect-square rounded-none overflow-hidden bg-cream">
+            <div className="aspect-square rounded-none overflow-hidden bg-cream p-6">
               <img 
                 src={activeMainImage || product.img} 
                 alt={product.name} 
                 width={1024} 
                 height={1024} 
-                className="w-full h-full object-cover" 
+                className="w-full h-full object-contain" 
               />
             </div>
             <div className="grid grid-cols-4 gap-3">
@@ -122,11 +122,11 @@ function ProductPage() {
                 <div 
                   key={i} 
                   onClick={() => setActiveMainImage(imgUrl)}
-                  className={`aspect-square rounded-none overflow-hidden bg-cream border transition-all cursor-pointer ${
+                  className={`aspect-square rounded-none overflow-hidden bg-cream border transition-all cursor-pointer p-2 ${
                     activeMainImage === imgUrl ? "border-accent ring-1 ring-accent" : "border-border hover:border-foreground/30"
                   }`}
                 >
-                  <img src={imgUrl} alt="" loading="lazy" className="w-full h-full object-cover" />
+                  <img src={imgUrl} alt="" loading="lazy" className="w-full h-full object-contain" />
                 </div>
               ))}
             </div>

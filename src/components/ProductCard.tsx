@@ -18,7 +18,7 @@ export function ProductCard({ p }: { p: Product }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative aspect-[3/4] overflow-hidden rounded-none bg-cream border border-border/40">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-none bg-cream border border-border/40 p-4">
         {/* Top Left Badge */}
         <span className="absolute top-3 left-3 z-10 bg-white/95 border border-border/80 text-foreground text-[9px] font-bold tracking-widest px-2.5 py-1 rounded-none shadow-xs uppercase">
           {p.hr}
@@ -31,7 +31,7 @@ export function ProductCard({ p }: { p: Product }) {
           width={768}
           height={768}
           loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-[1.03] transition-all duration-500"
+          className="w-full h-full object-contain group-hover:scale-[1.03] transition-all duration-500"
         />
       </div>
 
