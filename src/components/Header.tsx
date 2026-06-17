@@ -13,8 +13,9 @@ const NAV: Array<{ label: string; to: string }> = [
 ];
 
 export function VoguishMomentsLogo() {
+  const { clearMode } = useMode();
   return (
-    <Link to="/" className="flex items-center">
+    <Link to="/" className="flex items-center" onClick={() => clearMode()}>
       <img src={logoImg} alt="Voguish Moments Logo" className="h-7 md:h-10 w-auto object-contain" />
     </Link>
   );

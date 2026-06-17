@@ -108,27 +108,43 @@ function ProductPage() {
 
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
           <div className="grid grid-cols-1 gap-4">
-            <div className="aspect-square rounded-none overflow-hidden bg-cream p-6">
+            <div className={`aspect-square rounded-none overflow-hidden bg-white ${
+              selectedSize === "10 ml" || selectedSize === "15 ml" ? "p-6" : ""
+            }`}>
               <img 
                 src={activeMainImage || product.img} 
                 alt={product.name} 
                 width={1024} 
                 height={1024} 
-                className="w-full h-full object-contain" 
+                className={`w-full h-full ${
+                  selectedSize === "10 ml" || selectedSize === "15 ml" ? "object-contain" : "object-cover"
+                }`} 
               />
             </div>
             <div className="grid grid-cols-4 gap-3">
-              {([product.img, ...(product.gallery || [])] as string[]).slice(0, 4).map((imgUrl, i) => (
-                <div 
-                  key={i} 
-                  onClick={() => setActiveMainImage(imgUrl)}
-                  className={`aspect-square rounded-none overflow-hidden bg-cream border transition-all cursor-pointer p-2 ${
-                    activeMainImage === imgUrl ? "border-accent ring-1 ring-accent" : "border-border hover:border-foreground/30"
-                  }`}
-                >
-                  <img src={imgUrl} alt="" loading="lazy" className="w-full h-full object-contain" />
-                </div>
-              ))}
+              {([product.img, ...(product.gallery || [])] as string[]).slice(0, 4).map((imgUrl, i) => {
+                const isGalleryImg = i > 0;
+                return (
+                  <div 
+                    key={i} 
+                    onClick={() => setActiveMainImage(imgUrl)}
+                    className={`aspect-square rounded-none overflow-hidden bg-white border transition-all cursor-pointer ${
+                      isGalleryImg ? "p-2" : ""
+                    } ${
+                      activeMainImage === imgUrl ? "border-accent ring-1 ring-accent" : "border-border hover:border-foreground/30"
+                    }`}
+                  >
+                    <img 
+                      src={imgUrl} 
+                      alt="" 
+                      loading="lazy" 
+                      className={`w-full h-full ${
+                        isGalleryImg ? "object-contain" : "object-cover"
+                      }`} 
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
 
