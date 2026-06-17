@@ -8,9 +8,6 @@ import { PRODUCTS } from "@/data/catalog";
 import { useMode } from "@/context/ModeContext";
 import { getProducts } from "@/lib/productService";
 
-import p1 from "@/assets/product-1.jpg";
-import p2 from "@/assets/product-2.jpg";
-import p3 from "@/assets/product-3.jpg";
 import divorceHero from "@/assets/divorce-hero.jpg";
 
 export const Route = createFileRoute("/")({
@@ -38,30 +35,30 @@ export const DEFAULT_HERO_DATA: Record<string, HeroData> = {
   OUD_BASE: {
     title: "OUR EXCLUSIVE PARFUM\nDIVORCE",
     description:
-      "Elevate your glow with beauty essentials, shop the latest must-haves in one chic storefront.",
+      "THE GREATEST DISTANCE IN THE WORLD IS NOT BETWEEN TWO COUNTRIES,\nBUT BETWEEN TWO PEOPLE WHO SPEAK THE SAME LANGUAGE AND STILL FAIL TO UNDERSTAND EACH OTHER.\nTHIS DROP SPEAKS YOUR IDENTITY TO THE PEOPLES",
     featuredSlug: "divorce-perfume",
     img: divorceHero,
   },
   FLORAL_BASE: {
-    title: "OUR EXCLUSIVE PARFUM\nROSE CHIFFON",
+    title: "OUR EXCLUSIVE PARFUM\nSEDUCTION",
     description:
-      "Elegant blooming roses, sweet pink peony, and a touch of warm white musk absolute.",
-    featuredSlug: "rose-chiffon",
-    img: p1,
+      "A romantic, mood-enhancing fragrance infused with pheromone molecules designed to create a deep emotional connection.",
+    featuredSlug: "seduction",
+    img: "",
   },
   FRUITY_BASE: {
-    title: "OUR EXCLUSIVE PARFUM\nPEACH NECTAR",
+    title: "OUR EXCLUSIVE PARFUM\nMOOD SWINGS",
     description:
-      "Sweet sun-ripened peach, juicy apricot nectar, and sparkling mandarin zest.",
-    featuredSlug: "peach-nectar",
-    img: p2,
+      "An incredibly long-projecting scent featuring a dynamic profile of shifting mixed fruit notes that diverts your mind.",
+    featuredSlug: "mood-swings",
+    img: "",
   },
   FRESH_BASE: {
-    title: "OUR EXCLUSIVE PARFUM\nOCEAN BREEZE",
+    title: "OUR EXCLUSIVE PARFUM\nDOPAMINE",
     description:
-      "Crisp sea salt, cool marine accords, and sun-bleached driftwood absolute.",
-    featuredSlug: "ocean-breeze",
-    img: p3,
+      "A cool, high-dose fresh citrus blend of mint and green lemon to keep you focused and refreshed all day.",
+    featuredSlug: "dopamine",
+    img: "",
   },
 };
 
@@ -93,10 +90,10 @@ function Hero({ allProducts }: { allProducts: any[] }) {
     if (lines.length > 1) {
       return (
         <span className="flex flex-col gap-3 lg:gap-4">
-          <span className="text-sm md:text-base lg:text-lg font-light tracking-[0.25em] uppercase text-muted-foreground block">
+          <span className="font-hubballi text-sm md:text-base lg:text-lg font-normal tracking-[0.25em] uppercase text-muted-foreground block">
             {lines[0]}
           </span>
-          <span className="text-5xl md:text-7xl lg:text-8xl font-normal tracking-tight uppercase text-foreground block leading-none">
+          <span className="font-futura text-[38px] md:text-7xl lg:text-8xl font-normal uppercase text-foreground block leading-none lg:-ml-[8px]">
             {lines[1]}
           </span>
         </span>
@@ -120,7 +117,7 @@ function Hero({ allProducts }: { allProducts: any[] }) {
           <h1 className="font-display">
             {renderTitle(data.title)}
           </h1>
-          <p className="mt-8 text-muted-foreground text-base lg:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
+          <p className="mt-8 text-muted-foreground text-sm lg:text-base max-w-lg mx-auto lg:mx-0 leading-relaxed whitespace-pre-line">
             {data.description}
           </p>
           <div className="mt-8 lg:mt-10 flex items-center gap-6 flex-wrap justify-center lg:justify-start">
