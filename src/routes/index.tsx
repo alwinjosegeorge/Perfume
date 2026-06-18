@@ -9,6 +9,8 @@ import { useMode } from "@/context/ModeContext";
 import { getProducts } from "@/lib/productService";
 
 import divorceHero from "@/assets/divorce-hero.jpg";
+import seductionHeroImg from "@/assets/seduction-1.jpeg";
+import dopamineHeroImg from "@/assets/dopamine-1.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -75,7 +77,15 @@ function Hero({ allProducts }: { allProducts: any[] }) {
 
   const match = allProducts.find((p) => p.slug === resolvedSlug);
   if (match) {
-    resolvedImg = resolvedSlug === "divorce-perfume" ? divorceHero : match.img;
+    if (resolvedSlug === "divorce-perfume") {
+      resolvedImg = divorceHero;
+    } else if (resolvedSlug === "seduction") {
+      resolvedImg = seductionHeroImg;
+    } else if (resolvedSlug === "dopamine") {
+      resolvedImg = dopamineHeroImg;
+    } else {
+      resolvedImg = match.img;
+    }
   }
 
   const data = {

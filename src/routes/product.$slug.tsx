@@ -122,7 +122,7 @@ function ProductPage() {
               />
             </div>
             <div className="grid grid-cols-4 gap-3">
-              {([product.img, ...(product.gallery || [])] as string[]).slice(0, 4).map((imgUrl, i) => {
+              {([product.img, ...(product.gallery || [])] as string[]).map((imgUrl, i) => {
                 const isGalleryImg = i > 0;
                 return (
                   <div 
