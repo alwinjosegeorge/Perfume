@@ -27,6 +27,34 @@ import suicideKiss10mlImg from "@/assets/suicide-kiss-10ml.png";
 import dopamine10mlImg from "@/assets/dopamine-10ml.png";
 import moodSwings15mlImg from "@/assets/mood-swings-15ml.png";
 
+// Extra Gallery Images
+import burningAttraction1 from "@/assets/burning-attraction-1.jpeg";
+import burningAttraction2 from "@/assets/burning-attraction-2.jpeg";
+import burningAttraction3 from "@/assets/burning-attraction-3.jpeg";
+import dopamine1 from "@/assets/dopamine-1.jpeg";
+import dopamine2 from "@/assets/dopamine-2.jpeg";
+import dopamine3 from "@/assets/dopamine-3.jpeg";
+import dopamine4 from "@/assets/dopamine-4.jpeg";
+import dopamine5 from "@/assets/dopamine-5.jpeg";
+import evesTemptation1 from "@/assets/eves-temptation-1.jpeg";
+import evesTemptation2 from "@/assets/eves-temptation-2.jpeg";
+import evesTemptation3 from "@/assets/eves-temptation-3.jpeg";
+import evesTemptation4 from "@/assets/eves-temptation-4.jpeg";
+import evesTemptation5 from "@/assets/eves-temptation-5.jpeg";
+import evesTemptation5b from "@/assets/eves-temptation-5b.jpeg";
+import evesTemptation6 from "@/assets/eves-temptation-6.jpeg";
+import evesTemptation7 from "@/assets/eves-temptation-7.jpeg";
+import nakedNoise1 from "@/assets/naked-noise-1.jpeg";
+import nakedNoise2 from "@/assets/naked-noise-2.jpeg";
+import provocativeWine1 from "@/assets/provocative-wine-1.jpeg";
+import provocativeWine2 from "@/assets/provocative-wine-2.jpeg";
+import provocativeWine3 from "@/assets/provocative-wine-3.jpeg";
+import seduction1 from "@/assets/seduction-1.jpeg";
+import seduction2 from "@/assets/seduction-2.jpeg";
+import seduction3 from "@/assets/seduction-3.jpeg";
+import seduction4 from "@/assets/seduction-4.jpeg";
+
+
 export type Product = {
   slug: string;
   name: string;
@@ -85,7 +113,8 @@ export const PRODUCTS: Product[] = [
     hr: "5 HR",
     description: "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ. ഒരു ടുബാക്കോ പെർഫ്യൂം കരിഞ്ഞ ഇലകൾ ചന്ദനം മെക്സിക്കൻ ടുബാക്കോ വെൽവെറ്റ് വാനില ഇവയെല്ലാം ചേർന്ന സ്മോക്കി ഫീൽ തരുന്ന ഒരു മസ്കുലിൻ പെർഫ്യൂം. എസി കാറിൽ ഇത് ഉപയോഗിച്ചു പുറത്തിറങ്ങുന്ന സമയം പാർക്കിംഗ് സൈഡിൽ ഉള്ള ആളുകൾക്ക് വിളിച്ചുണർത്തി നിങ്ങളോട് ചോദിക്കാൻ ആഗ്രഹപ്പെടുന്ന ഒന്ന്. കണ്ണുകൾ അടച്ച് ഈ പെർഫ്യൂം സുഗന്ധം നിഫ് ചെയ്യുമ്പോൾ ഒരു ശാന്തത സമാധാനം നിങ്ങൾക്ക് അനുഭവിച്ചറിയാൻ സാധിക്കുന്നുണ്ടെങ്കിൽ നിങ്ങൾ ഇതിന്റെ വശ്യ മനോഹാരിതയിൽ അടിമപ്പെട്ടു പോകുക തന്നെ ചെയ്യും . ഒരു പുരുഷന്റെ സുഗന്ധം വിലകുറഞ്ഞ പുരുഷനെ അല്ല പറഞ്ഞത് ഒരു ബെൻഡ്ലി കാറിൽ സ്യൂട്ട് ആയി വന്നിറങ്ങിയ ഒരു പുരുഷനെ കുറിച്ച്",
     base: "OUD_BASE",
-    pricing: { "50 ml": 1200 }
+    pricing: { "50 ml": 1200 },
+    gallery: [burningAttraction1, burningAttraction2, burningAttraction3]
   },
   {
     slug: "no-exit",
@@ -124,7 +153,7 @@ export const PRODUCTS: Product[] = [
     description: "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ വാങ്ങിയ പൈസയ്ക്ക് രണ്ടിരട്ടി ലാഭം തരുന്ന പ്രോഡക്റ്റ് ഇത് ഒരു കസ്റ്റമർക്ക് കാഴ്ചവെക്കുന്ന രീതി രണ്ടു ആളുകളിൽ നിന്ന് ഒരാളെ മാറ്റി 20 മീറ്റർ ദൂരത്തോട്ട് നിർത്തുന്നു . അവിടെവച്ച് അയാൾക്ക് ഈ പെർഫ്യൂം ദേഹത്ത് അടിച്ചു കൊടുക്കുന്നു മറുഭാഗത്ത് നിൽക്കുന്ന ആൾക്ക് ഒരു മിനിറ്റിനുള്ളിൽ ഈ സുഗന്ധം അനുഭവിച്ചറിയാൻ സാധിച്ചാൽ പ്രോഡക്റ്റ് വിൽക്കത്തൊള്ളൂ അടങ്ങിയിരിക്കുന്ന കാര്യങ്ങൾ പാഷൻ ഫ്രൂട്ടിന്റെ വീര്യം കൂടെ ഊതും അതിനിടയിൽ കൂടെ കാന്റീ സുഗന്ധവും. ഇത് ഉപയോഗിച്ച് കടന്നുപോകുമ്പോൾ തലതിരിച്ചു നോക്കാൻ തോന്നിക്കുന്ന വിധം ആകർഷണ മാക്കപ്പെട്ടത്. ഉപയോഗിച്ചതിനു ശേഷം ഒരു വീട്ടിൽ ഗസ്റ്റ് ആയി പോവുകയോ ഒരു കടയിൽ കയറി സാധനം വാങ്ങാൻ പോവുകയോ ചെയ്താൽ അവിടെയുള്ളവർ തമ്മിൽ നോക്കി വന്നിരിക്കുന്ന ആളെ കുറിച്ച് സംസാരവിഷയം ആക്കുന്ന വീര്യം അതാണ് നേക്കഡ് നോയിസ്",
     base: "OUD_BASE",
     pricing: { "10 ml": 550, "50 ml": 1300 },
-    gallery: [nakedNoise10mlImg]
+    gallery: [nakedNoise10mlImg, nakedNoise1, nakedNoise2]
   },
 
   // --- FLORAL BASE ---
@@ -139,7 +168,7 @@ export const PRODUCTS: Product[] = [
     description: "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ അടങ്ങിയ ഒരു പ്രോഡക്റ്റ് എന്താണ് ഫെർമോൺ മൃഗങ്ങളും മനുഷ്യരും ബന്ധപ്പെടുന്ന സമയത്ത് പുറപ്പെടുവിക്കുന്ന ഒരു രാസപ്രക്രിയയാണ് ഈ മോളിക്കോൾസ് ഒരു റൊമാന്റിക് പെർഫ്യൂമിലോട്ട് ഇൻവെസ്റ്റ് ചെയ്തിരിക്കുന്ന ഒരു പ്രോഡക്റ്റ് തമ്മിൽ സ്നേഹിക്കപ്പെടുന്ന സമയത്ത് കമിതാക്കൾ കൂടുതലായി ഉപയോഗിക്കുന്നു ഒരു മൂഡ് എൻഹാൻസിങ് ആണ് ഇതിൽ നിന്ന് ലഭിക്കുന്നത് ഈ പെർഫ്യൂമിനെ കുറിച്ച് തമ്മിൽ സംസാരിക്കാൻ പാടുള്ളതല്ല ഒരു ഇമോഷണൽ കണക്ഷനെ അത് ബ്രേക്ക് ചെയ്യപ്പെടും അവൾ ഉപയോഗിച്ചാൽ അവനിലോട്ട് ഇതിനെക്കുറിച്ച് യാതൊരു അറിവും പറയാൻ പാടുള്ളതല്ല അവൻ ഉപയോഗിക്കുകയാണെങ്കിൽ അവളിലോട്ടും പറയരുത് ഞങ്ങളുടെ സക്സസ്ഫുൾ പ്രോഡക്റ്റ്",
     base: "FLORAL_BASE",
     pricing: { "10 ml": 550, "50 ml": 1300 },
-    gallery: [seduction10mlImg]
+    gallery: [seduction10mlImg, seduction1, seduction2, seduction3, seduction4]
   },
   {
     slug: "suck-eyes",
@@ -177,7 +206,8 @@ export const PRODUCTS: Product[] = [
     hr: "12 HR",
     description: "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ ഒരാൾ വന്ന് ആർക്കെങ്കിലും ഗിഫ്റ്റ് കൊടുക്കാൻ പെർഫ്യൂം വേണം എന്നു പറഞ്ഞാൽ ഈ പെർഫ്യൂം ആണ് സജസ്റ്റ് ചെയ്യുന്നത് കാരണം വാങ്ങാൻ വരുന്ന ആൾക്ക് ഗിഫ്റ്റ് കൊടുക്കാൻ ആഗ്രഹിക്കുന്ന ആളുടെ ഇഷ്ടപ്പെട്ട പെർഫ്യൂം ഏതായിരിക്കും എന്ന് അവർക്ക് അറിയാൻ കഴിയില്ല. ഞങ്ങൾ ഇതു തിരഞ്ഞെടുത്തു . കാരണമുണ്ട് മനുഷ്യർ ആരും ഇതുവരെ നോ പറയാത്തത് സുഗന്ധം എന്തിനെയാണ് സൂചിപ്പിക്കുന്നത് ഒരു ആഡംബര കല്യാണ ദിവസത്തെ അനുസ്മരിപ്പിക്കും വിധത്തിൽ തയ്യാറാക്കപ്പെട്ടത്. ഒരു ടിപ്പിക്കൽ പെർഫ്യൂം ആയി ആരും കാണില്ല. ആദ്യ അനുഭവത്തിൽ ആരുടെയും മുഖം ചുളിയില്ല കോൺഫിഡന്റിന്റെ അറ്റം. പേരുപോലെതന്നെ ഹവ്വ ഭൂമിയിലെ ആദ്യ സ്ത്രീ പ്രലോഭിപ്പിച്ചതുപോലെ",
     base: "FLORAL_BASE",
-    pricing: { "50 ml": 1300 }
+    pricing: { "50 ml": 1300 },
+    gallery: [evesTemptation1, evesTemptation2, evesTemptation3, evesTemptation4, evesTemptation5, evesTemptation5b, evesTemptation6, evesTemptation7]
   },
 
   // --- FRUITY BASE ---
@@ -204,7 +234,8 @@ export const PRODUCTS: Product[] = [
     hr: "12 HR",
     description: "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ പാരീസ് നഗരത്തിലെ വിലകൂടിയ ഒരു വൈൻ വളരെ മൈൽഡ് പെർഫ്യൂം ഉപയോഗിച്ചു ആദ്യ സമയങ്ങളിൽ ഇതിനെ മനസ്സിലാക്കാൻ കഴിയില്ല മദ്യം പോലെ ഉയർന്ന പണം കൊടുത്തു വാങ്ങുന്ന മദ്യം സാവധാനത്തിൽ ലഹരി പിടിപ്പിക്കും പോലെ പ്ലം അപ്പ്രിക്കോട്ട് റെഡ് ബെറി കോക്കനട്ട് ഇവയെല്ലാം ചേർന്ന് ഉണ്ടാക്കിയ വാറ്റ്. പുറത്ത് വർക്ക് ചെയ്യുന്നവർക്ക് വേണ്ടിയല്ല. ഒരു ഓഫീസ് ജീവനക്കാർക്ക് സൗമ്യമായ പെർഫ്യൂം. പ്രൊജക്ഷനും ലോങ്ങ് ലാസ്റ്റിംഗും ക്ലോസെഡ് ആംബിയൻസിൽ കൂടുതൽ നിലനിൽപ്പ്. ചുറ്റുമുള്ളവരെ വെറുപ്പിക്കില്ല. മൃദുലതയാർന്ന ചുവന്ന വാറ്റ്",
     base: "FRUITY_BASE",
-    pricing: { "50 ml": 1300 }
+    pricing: { "50 ml": 1300 },
+    gallery: [provocativeWine1, provocativeWine2, provocativeWine3]
   },
 
   // --- FRESH BASE ---
@@ -219,7 +250,7 @@ export const PRODUCTS: Product[] = [
     description: "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ നമ്മളുടെ ബ്രാൻഡിൽ ഒരേ ഒരു ഫ്രഷ് ഫ്രാഗ്രന്റ് ഇതു മതി ഒരുപാട് നാളുകൾ പല ഫ്രഷ് പെർഫ്യൂമുകളും നമ്മൾ കണ്ടു കാണും ലോങ്ങ് ലാസ്റ്റിംഗ് ഒരു മണിക്കൂർ മാത്രം തരുന്നത് ലോകത്തെവിടെയും ഫ്രഷ് സിട്രിക് ബേസ് പെർഫോമുകൾ ഒന്നോ രണ്ടോ മണിക്കൂർ മാത്രം ലാസ്റ്റിംഗ് തരുന്നു ഇത് വളരെ കെയർഫുൾ ആയി സ്മൂത്ത് ബ്ലെൻഡ് ചെയ്തു നിർമ്മിക്കപ്പെട്ടത് ഹൈ ഡോസ് ആണ് രാവിലെ ഉപയോഗിക്കാൻ നിർമ്മിച്ചത് ഓഫീസിൽ ഉപയോഗിക്കാൻ കഴിയും ജിമ്മിൽ കൊണ്ടുപോകാൻ ഏത് അവസരത്തിലും ഉപയോഗിക്കാൻ കഴിയുന്നതാണ് കാരണം ഫ്രഷ് സ്മെല്ലുകൾ നമുക്ക് എവിടെയും ആളുകളിൽ നിന്ന് നല്ല സംസാരം നല്ല ഫീൽ ലഭിക്കുന്നു ഓറഞ്ച് ലെമൺ മിന്റ് ബബ്ലൂസ് നാരങ്ങ ഇല ഉയർന്ന ഫ്രഷ്നസ് ഈ ബ്രാൻഡിൽ ഒരേയൊരു ഫ്രഷ് പെർഫ്യൂം എത്രത്തോളം ഫോക്കസ് ചെയ്തു നിർമ്മിച്ചതായിരിക്കും. ഒരിക്കലും നിങ്ങളെ വിഷമിപ്പിക്കില്ല ഒരു വൈകുന്നേരം ഉപയോഗിച്ചാൽ രാവിലെ എന്നപോലെ ഒരു ഫീൽ ഒരു തണുത്ത പെർഫ്യൂം",
     base: "FRESH_BASE",
     pricing: { "10 ml": 550, "50 ml": 1300 },
-    gallery: [dopamine10mlImg]
+    gallery: [dopamine10mlImg, dopamine1, dopamine2, dopamine3, dopamine4, dopamine5]
   }
 ];
 
@@ -248,6 +279,31 @@ export const PRODUCT_IMAGES: Record<string, string> = {
   "suicide-kiss-10ml": suicideKiss10mlImg,
   "dopamine-10ml": dopamine10mlImg,
   "mood-swings-15ml": moodSwings15mlImg,
+  "burning-attraction-1": burningAttraction1,
+  "burning-attraction-2": burningAttraction2,
+  "burning-attraction-3": burningAttraction3,
+  "dopamine-1": dopamine1,
+  "dopamine-2": dopamine2,
+  "dopamine-3": dopamine3,
+  "dopamine-4": dopamine4,
+  "dopamine-5": dopamine5,
+  "eves-temptation-1": evesTemptation1,
+  "eves-temptation-2": evesTemptation2,
+  "eves-temptation-3": evesTemptation3,
+  "eves-temptation-4": evesTemptation4,
+  "eves-temptation-5": evesTemptation5,
+  "eves-temptation-5b": evesTemptation5b,
+  "eves-temptation-6": evesTemptation6,
+  "eves-temptation-7": evesTemptation7,
+  "naked-noise-1": nakedNoise1,
+  "naked-noise-2": nakedNoise2,
+  "provocative-wine-1": provocativeWine1,
+  "provocative-wine-2": provocativeWine2,
+  "provocative-wine-3": provocativeWine3,
+  "seduction-1": seduction1,
+  "seduction-2": seduction2,
+  "seduction-3": seduction3,
+  "seduction-4": seduction4,
 };
 
 export function getMergedProducts(): Product[] {

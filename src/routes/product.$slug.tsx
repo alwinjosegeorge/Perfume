@@ -109,7 +109,7 @@ function ProductPage() {
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
           <div className="grid grid-cols-1 gap-4">
             <div className={`aspect-square rounded-none overflow-hidden bg-white ${
-              selectedSize === "10 ml" || selectedSize === "15 ml" ? "p-6" : ""
+              selectedSize === "10 ml" || selectedSize === "15 ml" ? "p-2" : ""
             }`}>
               <img 
                 src={activeMainImage || product.img} 
