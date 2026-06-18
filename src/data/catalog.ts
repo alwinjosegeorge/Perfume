@@ -199,7 +199,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "eves-temptation",
     name: "Eve's temptation",
-    category: "Turkish Rose + Red Current Berry",
+    category: "Rose + Red Berry",
     price: 1300,
     priceLabel: "₹1,300",
     img: evesTemptationImg,
