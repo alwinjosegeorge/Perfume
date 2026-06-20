@@ -39,8 +39,20 @@ function ProductPage() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activeMainImage, setActiveMainImage] = useState<string>("");
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number>(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [fadeOpacity, setFadeOpacity] = useState<number>(1);
   const { add } = useCart();
   const router = useRouter();
+
+  const changeImageWithFade = (newUrl: string) => {
+    setFadeOpacity(0);
+    setTimeout(() => {
+      setActiveMainImage(newUrl);
+      setFadeOpacity(1);
+    }, 100);
+  };
 
   useEffect(() => {
     let active = true;
@@ -56,11 +68,16 @@ function ProductPage() {
 
   useEffect(() => {
     if (product) {
+      let targetImg = product.img;
       if ((selectedSize === "10 ml" || selectedSize === "15 ml") && product.gallery && product.gallery.length > 0) {
-        setActiveMainImage(product.gallery[0]);
-      } else {
-        setActiveMainImage(product.img);
+        targetImg = product.gallery[0];
       }
+      // Apply fade transition on initial load or size swap
+      setFadeOpacity(0);
+      setTimeout(() => {
+        setActiveMainImage(targetImg);
+        setFadeOpacity(1);
+      }, 100);
       setIsExpanded(false);
     }
   }, [product, selectedSize]);
@@ -98,6 +115,7 @@ function ProductPage() {
   }, [product, allProducts]);
 
   const currentPrice = getPriceForSize(product, selectedSize);
+  const allImages = [product.img, ...(product.gallery || [])] as string[];
 
   return (
     <SiteLayout>
@@ -109,18 +127,28 @@ function ProductPage() {
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
           <div className="flex md:flex-row flex-col-reverse gap-4 items-start w-full">
             {/* Gallery Thumbnails List */}
-            <div className="flex md:flex-col flex-row gap-3 overflow-x-auto md:overflow-y-auto md:w-20 w-full max-h-[500px] shrink-0 py-1 md:py-0 scrollbar-none">
-              {([product.img, ...(product.gallery || [])] as string[]).map((imgUrl, i) => {
+            <div className="grid grid-cols-4 gap-3 w-full md:flex md:flex-col md:w-20 md:max-h-[500px] md:shrink-0 scrollbar-none">
+              {allImages.map((imgUrl, i) => {
                 const isGalleryImg = i > 0;
+                const isMobileHidden = i > 3;
+                const isMobileOverlay = i === 3 && allImages.length > 4;
+
                 return (
                   <div 
                     key={i} 
-                    onClick={() => setActiveMainImage(imgUrl)}
-                    className={`w-16 h-16 md:w-20 md:h-20 aspect-square rounded-none overflow-hidden bg-white border transition-all cursor-pointer shrink-0 ${
+                    onClick={() => {
+                      if (isMobileOverlay) {
+                        setLightboxIndex(i);
+                        setIsLightboxOpen(true);
+                      } else {
+                        changeImageWithFade(imgUrl);
+                      }
+                    }}
+                    className={`relative w-full aspect-square md:w-20 md:h-20 rounded-none overflow-hidden bg-white border transition-all cursor-pointer md:shrink-0 ${
                       isGalleryImg ? "p-2" : ""
                     } ${
                       activeMainImage === imgUrl ? "border-accent ring-1 ring-accent" : "border-border hover:border-foreground/30"
-                    }`}
+                    } ${isMobileHidden ? "hidden md:block" : "block"}`}
                   >
                     <img 
                       src={imgUrl} 
@@ -130,22 +158,56 @@ function ProductPage() {
                         isGalleryImg ? "object-contain" : "object-cover"
                       }`} 
                     />
+                    {isMobileOverlay && (
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white font-display text-sm font-medium md:hidden">
+                        +{allImages.length - 3}
+                      </div>
+                    )}
                   </div>
                 );
               })}
             </div>
 
             {/* Active Main Image Display */}
-            <div className={`flex-1 aspect-square rounded-none overflow-hidden bg-white ${
-              selectedSize === "10 ml" || selectedSize === "15 ml" ? "p-2" : ""
-            }`}>
+            <div 
+              onClick={() => {
+                const currentIdx = allImages.indexOf(activeMainImage || product.img);
+                setLightboxIndex(currentIdx >= 0 ? currentIdx : 0);
+                setIsLightboxOpen(true);
+              }}
+              onTouchStart={(e) => {
+                setTouchStart(e.targetTouches[0].clientX);
+              }}
+              onTouchEnd={(e) => {
+                if (touchStart === null) return;
+                const touchEnd = e.changedTouches[0].clientX;
+                const diff = touchStart - touchEnd;
+                const currentIdx = allImages.indexOf(activeMainImage || product.img);
+                const validIdx = currentIdx >= 0 ? currentIdx : 0;
+                
+                // Swipe left -> Next Image
+                if (diff > 45) {
+                  const nextIdx = (validIdx + 1) % allImages.length;
+                  changeImageWithFade(allImages[nextIdx]);
+                }
+                // Swipe right -> Previous Image
+                if (diff < -45) {
+                  const prevIdx = (validIdx - 1 + allImages.length) % allImages.length;
+                  changeImageWithFade(allImages[prevIdx]);
+                }
+                setTouchStart(null);
+              }}
+              className={`flex-1 aspect-square rounded-none overflow-hidden bg-white cursor-zoom-in relative select-none touch-pan-y ${
+                selectedSize === "10 ml" || selectedSize === "15 ml" ? "p-2" : ""
+              }`}
+            >
               <img 
-                key={activeMainImage || product.img}
                 src={activeMainImage || product.img} 
                 alt={product.name} 
                 width={1024} 
                 height={1024} 
-                className={`w-full h-full animate-fade-in ${
+                style={{ opacity: fadeOpacity }}
+                className={`w-full h-full transition-opacity duration-150 ease-in-out pointer-events-none select-none ${
                   selectedSize === "10 ml" || selectedSize === "15 ml" ? "object-contain" : "object-cover"
                 }`} 
               />
@@ -256,6 +318,60 @@ function ProductPage() {
           </div>
         </section>
       </div>
+
+      {/* Full Screen Lightbox Modal */}
+      {isLightboxOpen && (
+        <div className="fixed inset-0 bg-black/95 z-[9999] flex flex-col justify-center items-center p-4 animate-fade-in">
+          {/* Close button */}
+          <button 
+            onClick={() => setIsLightboxOpen(false)}
+            className="absolute top-6 right-6 text-white hover:text-white/80 transition-colors p-2 z-[10000] cursor-pointer"
+          >
+            <span className="text-3xl font-light">&times;</span>
+          </button>
+
+          {/* Main Slide Image */}
+          <div className="relative max-w-4xl max-h-[75vh] w-full flex items-center justify-center">
+            {/* Prev button */}
+            <button 
+              onClick={() => setLightboxIndex((prev: number) => (prev === 0 ? allImages.length - 1 : prev - 1))}
+              className="absolute left-4 z-10 text-white bg-black/40 hover:bg-black/60 rounded-full w-12 h-12 flex items-center justify-center transition-all cursor-pointer text-xl font-bold"
+            >
+              &larr;
+            </button>
+
+            <img 
+              src={allImages[lightboxIndex]} 
+              alt="Gallery Zoom" 
+              className="max-w-full max-h-[75vh] object-contain rounded select-none animate-fade-in"
+              key={lightboxIndex}
+            />
+
+            {/* Next button */}
+            <button 
+              onClick={() => setLightboxIndex((prev: number) => (prev === allImages.length - 1 ? 0 : prev + 1))}
+              className="absolute right-4 z-10 text-white bg-black/40 hover:bg-black/60 rounded-full w-12 h-12 flex items-center justify-center transition-all cursor-pointer text-xl font-bold"
+            >
+              &rarr;
+            </button>
+          </div>
+
+          {/* Dots / Thumbnails indicator at bottom */}
+          <div className="mt-6 flex gap-2 overflow-x-auto max-w-full p-2 scrollbar-none">
+            {allImages.map((imgUrl, idx) => (
+              <button 
+                key={idx}
+                onClick={() => setLightboxIndex(idx)}
+                className={`w-12 h-12 border rounded overflow-hidden shrink-0 transition-all cursor-pointer ${
+                  lightboxIndex === idx ? "border-white scale-105" : "border-white/20 opacity-60"
+                }`}
+              >
+                <img src={imgUrl} alt="" className="w-full h-full object-cover" />
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </SiteLayout>
   );
 }
