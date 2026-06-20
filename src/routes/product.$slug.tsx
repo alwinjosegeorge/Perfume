@@ -107,28 +107,16 @@ function ProductPage() {
         </nav>
 
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
-          <div className="grid grid-cols-1 gap-4">
-            <div className={`aspect-square rounded-none overflow-hidden bg-white ${
-              selectedSize === "10 ml" || selectedSize === "15 ml" ? "p-2" : ""
-            }`}>
-              <img 
-                src={activeMainImage || product.img} 
-                alt={product.name} 
-                width={1024} 
-                height={1024} 
-                className={`w-full h-full ${
-                  selectedSize === "10 ml" || selectedSize === "15 ml" ? "object-contain" : "object-cover"
-                }`} 
-              />
-            </div>
-            <div className="grid grid-cols-4 gap-3">
+          <div className="flex md:flex-row flex-col-reverse gap-4 items-start w-full">
+            {/* Gallery Thumbnails List */}
+            <div className="flex md:flex-col flex-row gap-3 overflow-x-auto md:overflow-y-auto md:w-20 w-full max-h-[500px] shrink-0 py-1 md:py-0 scrollbar-none">
               {([product.img, ...(product.gallery || [])] as string[]).map((imgUrl, i) => {
                 const isGalleryImg = i > 0;
                 return (
                   <div 
                     key={i} 
                     onClick={() => setActiveMainImage(imgUrl)}
-                    className={`aspect-square rounded-none overflow-hidden bg-white border transition-all cursor-pointer ${
+                    className={`w-16 h-16 md:w-20 md:h-20 aspect-square rounded-none overflow-hidden bg-white border transition-all cursor-pointer shrink-0 ${
                       isGalleryImg ? "p-2" : ""
                     } ${
                       activeMainImage === imgUrl ? "border-accent ring-1 ring-accent" : "border-border hover:border-foreground/30"
@@ -145,6 +133,22 @@ function ProductPage() {
                   </div>
                 );
               })}
+            </div>
+
+            {/* Active Main Image Display */}
+            <div className={`flex-1 aspect-square rounded-none overflow-hidden bg-white ${
+              selectedSize === "10 ml" || selectedSize === "15 ml" ? "p-2" : ""
+            }`}>
+              <img 
+                key={activeMainImage || product.img}
+                src={activeMainImage || product.img} 
+                alt={product.name} 
+                width={1024} 
+                height={1024} 
+                className={`w-full h-full animate-fade-in ${
+                  selectedSize === "10 ml" || selectedSize === "15 ml" ? "object-contain" : "object-cover"
+                }`} 
+              />
             </div>
           </div>
 

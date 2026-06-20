@@ -131,6 +131,12 @@
 }
 .animate-fade-up { animation: fade-up 0.8s ease-out both; }
 
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in { animation: fade-in 0.35s ease-out both; }
+
 .mode-selection-bg {
   background-image: var(--bg-mobile);
 }
