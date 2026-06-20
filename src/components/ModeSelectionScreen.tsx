@@ -52,7 +52,7 @@ export function ModeSelectionScreen() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-start md:justify-center px-6 pt-[45vh] md:py-12 bg-contain bg-no-repeat bg-[#2a3543] md:bg-cover bg-center select-none mode-selection-bg"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-start md:justify-center px-6 pt-[45vh] md:py-12 bg-cover bg-center select-none mode-selection-bg"
       style={{
         "--bg-desktop": `url(${bgImage})`,
         "--bg-mobile": `url(${bgImageMobile})`,
