@@ -8,9 +8,10 @@ import { PRODUCTS } from "@/data/catalog";
 import { useMode } from "@/context/ModeContext";
 import { getProducts } from "@/lib/productService";
 
-import divorceHero from "@/assets/divorce-hero.jpg";
+const divorceHero = "https://res.cloudinary.com/dar4m0jyt/image/upload/v1781975684/web-page-1_dhsv8l.jpg";
 import seductionHeroImg from "@/assets/seduction-1.jpeg";
 import dopamineHeroImg from "@/assets/dopamine-1.jpeg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
