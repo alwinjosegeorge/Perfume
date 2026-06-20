@@ -157,7 +157,7 @@ function Hero({ allProducts }: { allProducts: any[] }) {
           <Link
             to="/product/$slug"
             params={{ slug: data.featuredSlug }}
-            className="relative mx-auto w-full max-w-[450px] aspect-square block cursor-pointer group/heroimg"
+            className="relative mx-auto w-full max-w-[450px] aspect-[16/10] lg:aspect-square block cursor-pointer group/heroimg"
           >
             <div className="absolute inset-0 overflow-hidden bg-cream group-hover/heroimg:scale-[1.01] transition-transform duration-500 rounded-none border border-border/80">
               <img
