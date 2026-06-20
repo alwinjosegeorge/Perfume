@@ -116,8 +116,8 @@ function ProductPage() {
                 alt={product.name} 
                 width={1024} 
                 height={1024} 
-                className={`w-full h-full transition-transform duration-300 ${
-                  selectedSize === "10 ml" || selectedSize === "15 ml" ? "object-contain scale-[1.18]" : "object-cover"
+                className={`w-full h-full ${
+                  selectedSize === "10 ml" || selectedSize === "15 ml" ? "object-contain" : "object-cover"
                 }`} 
               />
             </div>
