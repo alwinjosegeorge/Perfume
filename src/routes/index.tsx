@@ -12,6 +12,7 @@ import divorceHero from "@/assets/divorce-hero.jpg";
 import seductionHeroImg from "@/assets/seduction-1.jpeg";
 import dopamineHeroImg from "@/assets/dopamine-1.jpeg";
 import oilsPageHeader from "@/assets/oils-page-header.png";
+import oilsPageHeaderMobile from "@/assets/oils-page-header-mobile.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -225,11 +226,18 @@ function Home() {
       <section className={isRollOnPremium ? "pt-6 pb-16 md:pt-8 md:pb-24" : "py-16"}>
         <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
           {isRollOnPremium ? (
-            <div className="flex flex-col items-center justify-center text-center mt-2 mb-12 animate-fade-up max-w-[450px] md:max-w-[600px] mx-auto w-full">
+            <div className="flex flex-col items-center justify-center text-center mt-2 mb-12 animate-fade-up mx-auto w-full">
+              {/* Desktop Header Image */}
               <img
                 src={oilsPageHeader}
                 alt="1001 Collections"
-                className="w-full h-auto object-contain select-none pointer-events-none"
+                className="hidden md:block max-w-[600px] w-full h-auto object-contain select-none pointer-events-none"
+              />
+              {/* Mobile Header Image */}
+              <img
+                src={oilsPageHeaderMobile}
+                alt="1001 Collections"
+                className="block md:hidden max-w-[320px] w-full h-auto object-contain select-none pointer-events-none"
               />
             </div>
           ) : (
