@@ -11,6 +11,7 @@ import { getProducts } from "@/lib/productService";
 import divorceHero from "@/assets/divorce-hero.jpg";
 import seductionHeroImg from "@/assets/seduction-1.jpeg";
 import dopamineHeroImg from "@/assets/dopamine-1.jpeg";
+import oilsPageHeader from "@/assets/oils-page-header.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -224,13 +225,12 @@ function Home() {
       <section className={isRollOnPremium ? "pt-6 pb-16 md:pt-8 md:pb-24" : "py-16"}>
         <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
           {isRollOnPremium ? (
-            <div className="flex flex-col items-center justify-center text-center mt-0 mb-12 animate-fade-up">
-              <h1 className="font-copperplate text-6xl md:text-[90px] font-bold tracking-[0.1em] mr-[-0.1em] text-foreground select-none uppercase leading-none">
-                1 0 0 1
-              </h1>
-              <p className="font-delmon text-lg md:text-2xl tracking-[0.7em] mr-[-0.7em] text-foreground mt-5 uppercase font-bold select-none">
-                COLLECTIONS
-              </p>
+            <div className="flex flex-col items-center justify-center text-center mt-2 mb-12 animate-fade-up max-w-[450px] md:max-w-[600px] mx-auto w-full">
+              <img
+                src={oilsPageHeader}
+                alt="1001 Collections"
+                className="w-full h-auto object-contain select-none pointer-events-none"
+              />
             </div>
           ) : (
             <h2 className="text-center font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-12">
