@@ -66,7 +66,10 @@ export const DEFAULT_HERO_DATA: Record<string, HeroData> = {
 
 function Hero({ allProducts }: { allProducts: any[] }) {
   const { mode } = useMode();
-  const activeMode = mode || "OUD_BASE";
+  const rawMode = mode || "OUD_BASE";
+  const activeMode = (rawMode === "DIVORCE_LOTION" || rawMode === "ROLL_ON_PREMIUM" || rawMode === "MESSI_EDITION")
+    ? "OUD_BASE"
+    : rawMode;
 
   const defaults = DEFAULT_HERO_DATA[activeMode] || DEFAULT_HERO_DATA.OUD_BASE;
 
@@ -178,7 +181,10 @@ function Hero({ allProducts }: { allProducts: any[] }) {
 
 function Home() {
   const { mode } = useMode();
-  const activeMode = mode || "OUD_BASE";
+  const rawMode = mode || "OUD_BASE";
+  const activeMode = (rawMode === "DIVORCE_LOTION" || rawMode === "ROLL_ON_PREMIUM" || rawMode === "MESSI_EDITION")
+    ? "OUD_BASE"
+    : rawMode;
   const [allProducts, setAllProducts] = useState<any[]>(PRODUCTS);
 
   useEffect(() => {

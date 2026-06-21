@@ -125,30 +125,33 @@ function ProductPage() {
         </nav>
 
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
-          <div className="flex md:flex-row flex-col-reverse gap-4 items-start w-full">
-            {/* Gallery Thumbnails List */}
-            <div className="grid grid-cols-4 gap-3 w-full md:flex md:flex-col md:w-20 md:max-h-[500px] md:shrink-0 scrollbar-none">
+          {/* Mobile Gallery (Original simple grid layout, no swiping/modal) */}
+          <div className="block md:hidden w-full">
+            <div className={`aspect-square rounded-none overflow-hidden bg-white mb-4 ${
+              selectedSize === "10 ml" || selectedSize === "15 ml" ? "p-2" : ""
+            }`}>
+              <img 
+                src={activeMainImage || product.img} 
+                alt={product.name} 
+                width={1024} 
+                height={1024} 
+                className={`w-full h-full ${
+                  selectedSize === "10 ml" || selectedSize === "15 ml" ? "object-contain" : "object-cover"
+                }`} 
+              />
+            </div>
+            <div className="grid grid-cols-4 gap-3">
               {allImages.map((imgUrl, i) => {
                 const isGalleryImg = i > 0;
-                const isMobileHidden = i > 3;
-                const isMobileOverlay = i === 3 && allImages.length > 4;
-
                 return (
                   <div 
                     key={i} 
-                    onClick={() => {
-                      if (isMobileOverlay) {
-                        setLightboxIndex(i);
-                        setIsLightboxOpen(true);
-                      } else {
-                        changeImageWithFade(imgUrl);
-                      }
-                    }}
-                    className={`relative w-full aspect-square md:w-20 md:h-20 rounded-none overflow-hidden bg-white border transition-all cursor-pointer md:shrink-0 ${
+                    onClick={() => setActiveMainImage(imgUrl)}
+                    className={`aspect-square rounded-none overflow-hidden bg-white border transition-all cursor-pointer ${
                       isGalleryImg ? "p-2" : ""
                     } ${
                       activeMainImage === imgUrl ? "border-accent ring-1 ring-accent" : "border-border hover:border-foreground/30"
-                    } ${isMobileHidden ? "hidden md:block" : "block"}`}
+                    }`}
                   >
                     <img 
                       src={imgUrl} 
@@ -158,11 +161,36 @@ function ProductPage() {
                         isGalleryImg ? "object-contain" : "object-cover"
                       }`} 
                     />
-                    {isMobileOverlay && (
-                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-white font-display text-sm font-medium md:hidden">
-                        +{allImages.length - 3}
-                      </div>
-                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Desktop Gallery (Side vertical thumbnails list + active main image with zoom & lightbox) */}
+          <div className="hidden md:flex md:flex-row gap-4 items-start w-full">
+            {/* Gallery Thumbnails List */}
+            <div className="flex flex-col w-20 max-h-[500px] shrink-0 scrollbar-none gap-3">
+              {allImages.map((imgUrl, i) => {
+                const isGalleryImg = i > 0;
+                return (
+                  <div 
+                    key={i} 
+                    onClick={() => changeImageWithFade(imgUrl)}
+                    className={`relative w-20 h-20 rounded-none overflow-hidden bg-white border transition-all cursor-pointer shrink-0 ${
+                      isGalleryImg ? "p-2" : ""
+                    } ${
+                      activeMainImage === imgUrl ? "border-accent ring-1 ring-accent" : "border-border hover:border-foreground/30"
+                    }`}
+                  >
+                    <img 
+                      src={imgUrl} 
+                      alt="" 
+                      loading="lazy" 
+                      className={`w-full h-full ${
+                        isGalleryImg ? "object-contain" : "object-cover"
+                      }`} 
+                    />
                   </div>
                 );
               })}
@@ -175,29 +203,7 @@ function ProductPage() {
                 setLightboxIndex(currentIdx >= 0 ? currentIdx : 0);
                 setIsLightboxOpen(true);
               }}
-              onTouchStart={(e) => {
-                setTouchStart(e.targetTouches[0].clientX);
-              }}
-              onTouchEnd={(e) => {
-                if (touchStart === null) return;
-                const touchEnd = e.changedTouches[0].clientX;
-                const diff = touchStart - touchEnd;
-                const currentIdx = allImages.indexOf(activeMainImage || product.img);
-                const validIdx = currentIdx >= 0 ? currentIdx : 0;
-                
-                // Swipe left -> Next Image
-                if (diff > 45) {
-                  const nextIdx = (validIdx + 1) % allImages.length;
-                  changeImageWithFade(allImages[nextIdx]);
-                }
-                // Swipe right -> Previous Image
-                if (diff < -45) {
-                  const prevIdx = (validIdx - 1 + allImages.length) % allImages.length;
-                  changeImageWithFade(allImages[prevIdx]);
-                }
-                setTouchStart(null);
-              }}
-              className={`flex-1 aspect-square rounded-none overflow-hidden bg-white cursor-zoom-in relative select-none touch-pan-y ${
+              className={`flex-1 aspect-square rounded-none overflow-hidden bg-white cursor-zoom-in relative select-none ${
                 selectedSize === "10 ml" || selectedSize === "15 ml" ? "p-2" : ""
               }`}
             >

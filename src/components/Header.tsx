@@ -42,6 +42,9 @@ export function Header() {
     { id: "FLORAL_BASE", label: "Floral Base" },
     { id: "FRUITY_BASE", label: "Fruity Base" },
     { id: "FRESH_BASE", label: "Fresh Base" },
+    { id: "DIVORCE_LOTION", label: "Divorce Lotion" },
+    { id: "ROLL_ON_PREMIUM", label: "Roll ON Premium" },
+    { id: "MESSI_EDITION", label: "Messi edition" },
   ];
 
   const getModeLabel = (m: FragranceMode | null) => {
@@ -54,6 +57,12 @@ export function Header() {
         return "Fruity Base";
       case "FRESH_BASE":
         return "Fresh Base";
+      case "DIVORCE_LOTION":
+        return "Divorce Lotion";
+      case "ROLL_ON_PREMIUM":
+        return "Roll ON Premium";
+      case "MESSI_EDITION":
+        return "Messi edition";
       default:
         return "Select Mode";
     }

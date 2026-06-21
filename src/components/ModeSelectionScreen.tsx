@@ -33,6 +33,9 @@ export function ModeSelectionScreen() {
     { id: "FLORAL_BASE", label: "Floral Base" },
     { id: "FRUITY_BASE", label: "Fruity Base" },
     { id: "FRESH_BASE", label: "Fresh Base" },
+    { id: "DIVORCE_LOTION", label: "Divorce Lotion" },
+    { id: "ROLL_ON_PREMIUM", label: "Roll ON Premium" },
+    { id: "MESSI_EDITION", label: "Messi edition" },
   ];
 
   const getModeLabel = (m: FragranceMode | null) => {
@@ -45,6 +48,12 @@ export function ModeSelectionScreen() {
         return "Fruity Base";
       case "FRESH_BASE":
         return "Fresh Base";
+      case "DIVORCE_LOTION":
+        return "Divorce Lotion";
+      case "ROLL_ON_PREMIUM":
+        return "Roll ON Premium";
+      case "MESSI_EDITION":
+        return "Messi edition";
       default:
         return "Choose your fragrance base";
     }
@@ -52,7 +61,7 @@ export function ModeSelectionScreen() {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-start md:justify-center px-6 pt-[45vh] md:py-12 bg-cover bg-center select-none mode-selection-bg"
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-start md:justify-start px-6 pt-[45vh] md:pt-[22vh] md:py-12 bg-cover bg-center select-none mode-selection-bg"
       style={{
         "--bg-desktop": `url(${bgImage})`,
         "--bg-mobile": `url(${bgImageMobile})`,
@@ -105,7 +114,7 @@ export function ModeSelectionScreen() {
 
           {/* Custom Dropdown Options */}
           {isOpen && (
-            <div className="absolute left-0 right-0 mt-1.5 bg-white border border-[#EAE8E2] shadow-2xl rounded-none py-1.5 z-[120] flex flex-col">
+            <div className="absolute left-0 right-0 mt-1.5 bg-white border border-[#EAE8E2] shadow-2xl rounded-none py-1.5 z-[120] flex flex-col md:max-h-[220px] md:overflow-y-auto md:dropdown-scroll animate-dropdown-fade">
               {OPTIONS.map((opt) => (
                 <button
                   key={opt.id}
@@ -114,7 +123,7 @@ export function ModeSelectionScreen() {
                     setSelectedMode(opt.id as FragranceMode);
                     setIsOpen(false);
                   }}
-                  className={`w-full px-6 py-3.5 text-left text-xs md:text-sm font-medium transition-colors flex items-center justify-between cursor-pointer ${
+                  className={`w-full px-6 py-3.5 md:py-2.5 text-left text-xs md:text-[13px] font-medium transition-colors flex items-center justify-between cursor-pointer ${
                     selectedMode === opt.id
                       ? "text-accent bg-[#FAF9F5]/70"
                       : "text-black hover:bg-[#FAF9F5]"
