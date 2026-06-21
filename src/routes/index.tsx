@@ -67,7 +67,7 @@ export const DEFAULT_HERO_DATA: Record<string, HeroData> = {
 function Hero({ allProducts }: { allProducts: any[] }) {
   const { mode } = useMode();
   const rawMode = mode || "OUD_BASE";
-  const activeMode = (rawMode === "DIVORCE_LOTION" || rawMode === "ROLL_ON_PREMIUM" || rawMode === "MESSI_EDITION")
+  const activeMode = (rawMode === "DIVORCE_LOTION" || rawMode === "MESSI_EDITION")
     ? "OUD_BASE"
     : rawMode;
 
@@ -182,7 +182,7 @@ function Hero({ allProducts }: { allProducts: any[] }) {
 function Home() {
   const { mode } = useMode();
   const rawMode = mode || "OUD_BASE";
-  const activeMode = (rawMode === "DIVORCE_LOTION" || rawMode === "ROLL_ON_PREMIUM" || rawMode === "MESSI_EDITION")
+  const activeMode = (rawMode === "DIVORCE_LOTION" || rawMode === "MESSI_EDITION")
     ? "OUD_BASE"
     : rawMode;
   const [allProducts, setAllProducts] = useState<any[]>(PRODUCTS);
@@ -214,16 +214,29 @@ function Home() {
     }
   };
 
+  const isRollOnPremium = mode === "ROLL_ON_PREMIUM";
+
   return (
     <SiteLayout>
-      <Hero allProducts={allProducts} />
-
+      {!isRollOnPremium && <Hero allProducts={allProducts} />}
+ 
       {/* Mode-Specific Showcase */}
-      <section className="py-16">
+      <section className={isRollOnPremium ? "pt-6 pb-16 md:pt-8 md:pb-24" : "py-16"}>
         <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
-          <h2 className="text-center font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-12">
-            {getModeHeading(activeMode)}
-          </h2>
+          {isRollOnPremium ? (
+            <div className="flex flex-col items-center justify-center text-center mt-0 mb-12 animate-fade-up">
+              <h1 className="font-copperplate text-6xl md:text-[90px] font-bold tracking-[0.1em] mr-[-0.1em] text-foreground select-none uppercase leading-none">
+                1 0 0 1
+              </h1>
+              <p className="font-delmon text-lg md:text-2xl tracking-[0.7em] mr-[-0.7em] text-foreground mt-5 uppercase font-bold select-none">
+                COLLECTIONS
+              </p>
+            </div>
+          ) : (
+            <h2 className="text-center font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-12">
+              {getModeHeading(activeMode)}
+            </h2>
+          )}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {modePerfumes.map((p) => (
               <ProductCard key={p.slug} p={p} />
@@ -231,22 +244,24 @@ function Home() {
           </div>
         </div>
       </section>
-
-      {/* Global Combined Showcase Link above Footer */}
-      <section className="py-20 bg-cream/30 border-t border-border/40 text-center">
-        <div className="max-w-xl mx-auto px-6">
-          <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-4">Our Fragrance Library</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-            Discover our entire range of exceptional perfumes from all bases, crafted with premium ingredients and long-lasting concentration.
-          </p>
-          <Link
-            to="/shop"
-            className="inline-flex items-center justify-center rounded-full bg-[#1c1917] hover:bg-[#1c1917]/90 text-white font-semibold text-xs tracking-widest uppercase px-8 py-4 shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-          >
-            See All Our Perfumes
-          </Link>
-        </div>
-      </section>
+ 
+      {!isRollOnPremium && (
+        /* Global Combined Showcase Link above Footer */
+        <section className="py-20 bg-cream/30 border-t border-border/40 text-center">
+          <div className="max-w-xl mx-auto px-6">
+            <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-4">Our Fragrance Library</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+              Discover our entire range of exceptional perfumes from all bases, crafted with premium ingredients and long-lasting concentration.
+            </p>
+            <Link
+              to="/shop"
+              className="inline-flex items-center justify-center rounded-full bg-[#1c1917] hover:bg-[#1c1917]/90 text-white font-semibold text-xs tracking-widest uppercase px-8 py-4 shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            >
+              See All Our Perfumes
+            </Link>
+          </div>
+        </section>
+      )}
     </SiteLayout>
   );
 }

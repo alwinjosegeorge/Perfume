@@ -27,6 +27,13 @@ import suicideKiss10mlImg from "@/assets/suicide-kiss-10ml.png";
 import dopamine10mlImg from "@/assets/dopamine-10ml.png";
 import moodSwings15mlImg from "@/assets/mood-swings-15ml.png";
 
+// Roll ON Premium Imports
+import dubaiNightsImg from "@/assets/dubai-nights.png";
+import placeParisImg from "@/assets/place-paris.png";
+import lastSeenImg from "@/assets/last-seen.png";
+import cafeLipsImg from "@/assets/cafe-lips.png";
+import sacrificeImg from "@/assets/sacrifice.png";
+
 // Extra Gallery Images
 import burningAttraction1 from "@/assets/burning-attraction-1.jpeg";
 import burningAttraction2 from "@/assets/burning-attraction-2.jpeg";
@@ -64,7 +71,7 @@ export type Product = {
   img: string;
   hr: string;
   description: string;
-  base?: "OUD_BASE" | "FLORAL_BASE" | "FRUITY_BASE" | "FRESH_BASE";
+  base?: "OUD_BASE" | "FLORAL_BASE" | "FRUITY_BASE" | "FRESH_BASE" | "ROLL_ON_PREMIUM";
   isCustom?: boolean;
   pricing?: Record<string, number>;
   badge?: "Bestseller" | "Only 2 Left" | "";
@@ -251,6 +258,68 @@ export const PRODUCTS: Product[] = [
     base: "FRESH_BASE",
     pricing: { "10 ml": 550, "50 ml": 1300 },
     gallery: [dopamine10mlImg, dopamine1, dopamine2, dopamine3, dopamine4, dopamine5]
+  },
+
+  // --- ROLL ON PREMIUM ---
+  {
+    slug: "dubai-nights",
+    name: "DUBAI NIGHTS",
+    category: "Patchouli & warm spicy",
+    price: 550,
+    priceLabel: "₹550",
+    img: dubaiNightsImg,
+    hr: "12 HR",
+    description: "മരുഭൂമിയിലെ രാത്രികളുടെ സമൃദ്ധിയും രഹസ്യവും. ഈത്ത പന മരത്തിൽ നിന്നും നേർത്ത സൗമ്യമായ ഊദിലേക്.ഫ്രഞ്ച് രാജകുമാരിമാർക്കിടയിൽ ഏറ്റവും പ്രിയപ്പെട്ടത്",
+    base: "ROLL_ON_PREMIUM",
+    pricing: { "10 ml": 550 }
+  },
+  {
+    slug: "palace-in-paris",
+    name: "PALACE IN PARIS",
+    category: "Luxury Oud",
+    price: 550,
+    priceLabel: "₹550",
+    img: placeParisImg,
+    hr: "12 HR",
+    description: "ഒരു പുതിയ സൗഹൃദത്തിന്റെ തുടക്കം.ആഴമേറിയ സൗഹൃദം പോലെ ഒരിക്കലും വിട്ടു പിരിയാൻ ആകാത്ത വിധം ശരീരത്തിൽ നിലനിൽക്കുന്ന ഊദ്. വെള്ളമൊഴിച്ചു കഴുകിയാലും പിരിഞ്ഞു പോകാൻ പറ്റാത്ത വിധം നിലനിൽക്കുന്നത്. രാജ്യങ്ങൾ തമ്മിലുള്ള ആഴമേറിയ സൗഹൃദം പോലെ കണക്കാക്കുന്ന വിധം നിർമ്മിക്കപ്പെട്ടത്",
+    base: "ROLL_ON_PREMIUM",
+    pricing: { "10 ml": 550 }
+  },
+  {
+    slug: "last-seen",
+    name: "LAST SEEN",
+    category: "Tuberose & fruity",
+    price: 550,
+    priceLabel: "₹550",
+    img: lastSeenImg,
+    hr: "12 HR",
+    description: "അകലങ്ങൾക്കിടയിലും നിലനിൽക്കുന്ന ഓർമ്മകൾ. ഒരു കാമുകിയെ പോലെ നീ സ്നേഹിക്കപെടാൻ ഉറപ്പുള്ള സുഗന്ധം . സ്നേഹമാണ് ഒരുപാട് അകന്നു പോവാൻ കഴിയാത്ത വിധം സ്നേഹിക്കപെടും . തീർന്നു പോയാൽ കരച്ചിൽ വരും. ആത്മബന്ധം പുനഃസ്ഥാപിക്കാൻ വീണ്ടും മനസ് ആഗ്രഹിക്കുന്ന ഒന്ന് .",
+    base: "ROLL_ON_PREMIUM",
+    pricing: { "10 ml": 550 }
+  },
+  {
+    slug: "cafe-lips",
+    name: "CAFE LIPS",
+    category: "Coffee & Warm Vanilla",
+    price: 550,
+    priceLabel: "₹550",
+    img: cafeLipsImg,
+    hr: "12 HR",
+    description: "കൊട്ടാരങ്ങളിലെ ഔദ്യോഗിക കൂടിക്കാഴ്ചകൾ കഴിഞ്ഞ്, മനുഷ്യരെ അടുത്ത് കൊണ്ടുവന്ന സംഭാഷണങ്ങളുടെ സുഗന്ധം. ആദ്യത്തെ സ്പ്രിറ്റ്സിൽ തന്നെ, കഫെ ലാറ്റെ നിങ്ങളുടെ ഇന്ദ്രിയങ്ങളെ ഉണർത്തുന്നു, കടുപ്പമേറിയ കോഫി, മധുരമുള്ള ബദാം, ക്രീം പാൽ എന്നിവയുടെ മികച്ച കുറിപ്പുകൾ. സുഗന്ധം പരക്കുമ്പോൾ, മിനുസമാർന്ന ഐസ്ക്രീം, സ്വർണ്ണ വാനില, ചൂടുള്ള ആമ്പർ എന്നിവയുടെ ഹൃദയസ്പർശിയായ കുറിപ്പുകൾ ഒരുമിച്ച് ഉരുകി, നിങ്ങളെ ഒരു സ്വാദിഷ്ടമായ മൃദുലമായ ആലിംഗനത്തിൽ പൊതിഞ്ഞു നിർത്തുന്നു.",
+    base: "ROLL_ON_PREMIUM",
+    pricing: { "10 ml": 550 }
+  },
+  {
+    slug: "sacrifice",
+    name: "SACRIFICE",
+    category: "Spicy & Earthy Chypre",
+    price: 550,
+    priceLabel: "₹550",
+    img: sacrificeImg,
+    hr: "12 HR",
+    description: "ഒരു സാമ്രാജ്യം നിലനിൽക്കാൻ നൽകിയ ത്യാഗങ്ങളുടെ ഓർമ്മ. പുരുഷന്മാർക്ക് വേണ്ടിയുള്ള ഒരു നിർത്തലാക്കപ്പെട്ട, കരുത്തുറ്റതും ഇരുണ്ടതുമായ ചൈപ്രെ സുഗന്ധം. ഇത് മൂർച്ചയുള്ളതും കടുപ്പമുള്ളതുമായ സുഗന്ധവ്യഞ്ജനങ്ങളെ സമ്പന്നമായ, മണ്ണുകൊണ്ടുള്ള മരങ്ങളുമായി താരതമ്യം ചെയ്യുന്നു, ഇത് ക്ഷമാപണമില്ലാത്തതും, പക്വവും, ആധുനികവുമായ ഒരു ഭാവം നൽകുന്നു.",
+    base: "ROLL_ON_PREMIUM",
+    pricing: { "10 ml": 550 }
   }
 ];
 

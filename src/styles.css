@@ -187,3 +187,23 @@
 .animate-dropdown-fade {
   animation: dropdown-fade 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+.font-bodoni {
+  font-family: "Bodoni Moda", "Didot", serif;
+}
+
+.font-playfair {
+  font-family: "Playfair Display", "Didot", serif;
+}
+
+.font-cormorant {
+  font-family: "Cormorant Garamond", "Didot", serif;
+}
+
+.font-copperplate {
+  font-family: "Copperplate Std Bold Condensed", "Copperplate Std", "Copperplate Gothic Bold", "Copperplate", "Copperplate Gothic", fantasy;
+}
+
+.font-delmon {
+  font-family: "Delmon Delicate", "Delmon Delicate Regular", "Playfair Display", "Didot", serif;
+}
