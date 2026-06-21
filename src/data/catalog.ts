@@ -276,7 +276,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "palace-in-paris",
     name: "PALACE IN PARIS",
-    category: "Luxury Oud",
+    category: "Dry Oriental & rare oud",
     price: 550,
     priceLabel: "₹550",
     img: placeParisImg,
@@ -300,7 +300,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: "cafe-lips",
     name: "CAFE LIPS",
-    category: "Coffee & Warm Vanilla",
+    category: "Coffee & warm spicy",
     price: 550,
     priceLabel: "₹550",
     img: cafeLipsImg,
@@ -312,12 +312,12 @@ export const PRODUCTS: Product[] = [
   {
     slug: "sacrifice",
     name: "SACRIFICE",
-    category: "Spicy & Earthy Chypre",
+    category: "Sichuan pepper & ginger",
     price: 550,
     priceLabel: "₹550",
     img: sacrificeImg,
     hr: "12 HR",
-    description: "ഒരു സാമ്രാജ്യം നിലനിൽക്കാൻ നൽകിയ ത്യാഗങ്ങളുടെ ഓർമ്മ. പുരുഷന്മാർക്ക് വേണ്ടിയുള്ള ഒരു നിർത്തലാക്കപ്പെട്ട, കരുത്തുറ്റതും ഇരുണ്ടതുമായ ചൈപ്രെ സുഗന്ധം. ഇത് മൂർച്ചയുള്ളതും കടുപ്പമുള്ളതുമായ സുഗന്ധവ്യഞ്ജനങ്ങളെ സമ്പന്നമായ, മണ്ണുകൊണ്ടുള്ള മരങ്ങളുമായി താരതമ്യം ചെയ്യുന്നു, ഇത് ക്ഷമാപണമില്ലാത്തതും, പക്വവും, ആധുനികവുമായ ഒരു ഭാവം നൽകുന്നു.",
+    description: "ഒരു സാമ്രാജ്യം നിലനിൽക്കാൻ നൽകിയ ത്യാഗങ്ങളുടെ ഓർമ്മ. പുരുഷന്മാർക്ക് വേണ്ടിയുള്ള ഒരു നിർത്തലാക്കപ്പെട്ട, കരുത്തുറ്റതും ഇരുണ്ടതുമായ ചൈപ്രെ സുഗന്ധം. ഇത് മൂർച്ചയുള്ളതും കടുപ്പമുള്ളതുമായ സുഗന്ധവ്യഞ്ജനങ്ങളെ സമ്പന്നമായ, മണ്ണുകൊണ്ടുള്ള മരങ്ങളുമായി താരതമ്യം ചെയ്യുന്നു, ഇത് ക്ഷമാപണമില്ലാത്തതും, പക്വവും, ആധുനികവുമായ ഒരു ભാവം നൽകുന്നു.",
     base: "ROLL_ON_PREMIUM",
     pricing: { "10 ml": 550 }
   }
