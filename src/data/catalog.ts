@@ -66,6 +66,13 @@ import seduction2 from "@/assets/seduction-2.jpeg";
 import seduction3 from "@/assets/seduction-3.jpeg";
 import seduction4 from "@/assets/seduction-4.jpeg";
 
+// Divorce Lotion Imports
+import divorceLotionProduct from "@/assets/divorce-lotion-product.png";
+import divorceLotionHero from "@/assets/divorce-lotion-hero.png";
+import divorceLotionGallery1 from "@/assets/divorce-lotion-gallery1.jpg";
+import divorceLotionGallery2 from "@/assets/divorce-lotion-gallery2.jpg";
+
+
 
 export type Product = {
   slug: string;
@@ -76,7 +83,7 @@ export type Product = {
   img: string;
   hr: string;
   description: string;
-  base?: "OUD_BASE" | "FLORAL_BASE" | "FRUITY_BASE" | "FRESH_BASE" | "ROLL_ON_PREMIUM" | "MESSI_EDITION";
+  base?: "OUD_BASE" | "FLORAL_BASE" | "FRUITY_BASE" | "FRESH_BASE" | "ROLL_ON_PREMIUM" | "MESSI_EDITION" | "DIVORCE_LOTION";
   isCustom?: boolean;
   pricing?: Record<string, number>;
   badge?: "Bestseller" | "Only 2 Left" | "";
@@ -338,6 +345,19 @@ export const PRODUCTS: Product[] = [
     base: "MESSI_EDITION",
     pricing: { "10 ml": 400, "50 ml": 2000 },
     gallery: [messiGalleryImg, messiHeroImg]
+  },
+  {
+    slug: "divorce-lotion",
+    name: "DIVORCE LOTION",
+    category: "Honey & Oud",
+    price: 650,
+    priceLabel: "₹650",
+    img: divorceLotionProduct,
+    hr: "24 Hours",
+    description: "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ ഏഴ് മാസത്തോളമായി ഞങ്ങൾ ഇത് ലോഞ്ച് ചെയ്തിട്ട്. എന്താണ് ഇതിന്റെ ഫീൽ? ഒരു വലിയ തറവാട്ടിൽ ഒരു പാട് പൈസ ഉള്ള ആളെ പോലെ. ഒരു 40000 രൂപയുടെ പെർഫ്യൂം ആണ് അടിച്ചിരിക്കുന്നത് എന്ന് മറ്റുള്ളവർക്ക് തോന്നും. ഒരാൾ വന്ന് ഹഗ്ഗ് ചെയ്താൽ പോലും ഈ സുഗന്ധം അവരുടെ ഡ്രസ്സിലോട്ട് പകരും. നമ്മൾ എവിടെ നിൽക്കുകയാണോ അവിടെ നിന്ന് മാറിയാൽ പോലും ആ ഏരിയയിൽ ഈ സുഗന്ധം തങ്ങിനിൽക്കും.",
+    base: "DIVORCE_LOTION",
+    pricing: { "100 ml": 650 },
+    gallery: [divorceLotionHero, divorceLotionGallery1, divorceLotionGallery2]
   }
 ];
 

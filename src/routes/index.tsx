@@ -15,6 +15,7 @@ import oilsPageHeader from "@/assets/oils-page-header.png";
 import oilsPageHeaderMobile from "@/assets/oils-page-header-mobile.png";
 import messiHeroImg from "@/assets/messi-hero.png";
 import oilsPageHeaderLap from "@/assets/oils-page-header-lap.png";
+import divorceLotionHero from "@/assets/divorce-lotion-hero.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -73,15 +74,19 @@ export const DEFAULT_HERO_DATA: Record<string, HeroData> = {
     featuredSlug: "lionel-leather",
     img: messiHeroImg,
   },
+  DIVORCE_LOTION: {
+    title: "OUR EXCLUSIVE LOTION\nDIVORCE LOTION",
+    description:
+      "ഈ പെർഫ്യൂമിനെ കുറിച്ച് പറയുകയാണെങ്കിൽ ഏഴ് മാസത്തോളമായി ഞങ്ങൾ ഇത് ലോഞ്ച് ചെയ്തിട്ട്. എന്താണ് ഇതിന്റെ ഫീൽ? ഒരു വലിയ തറവാട്ടിൽ ഒരു പാട് പൈസ ഉള്ള ആളെ പോലെ. ഒരു 40000 രൂപയുടെ പെർഫ്യൂം ആണ് അടിച്ചിരിക്കുന്നത് എന്ന് മറ്റുള്ളവർക്ക് തോന്നും. ഒരാൾ വന്ന് ഹഗ്ഗ് ചെയ്താൽ പോലും ഈ സുഗന്ധം അവരുടെ ഡ്രസ്സിലോട്ട് പകരും. നമ്മൾ എവിടെ നിൽക്കുകയാണോ അവിടെ നിന്ന് മാറിയാൽ പോലും ആ ഏരിയയിൽ ഈ സുഗന്ധം തങ്ങിനിൽക്കും.",
+    featuredSlug: "divorce-lotion",
+    img: divorceLotionHero,
+  },
 };
 
 function Hero({ allProducts }: { allProducts: any[] }) {
   const { mode } = useMode();
   const [isDescExpanded, setIsDescExpanded] = useState(false);
-  const rawMode = mode || "OUD_BASE";
-  const activeMode = (rawMode === "DIVORCE_LOTION")
-    ? "OUD_BASE"
-    : rawMode;
+  const activeMode = mode || "OUD_BASE";
 
   const defaults = DEFAULT_HERO_DATA[activeMode] || DEFAULT_HERO_DATA.OUD_BASE;
 
@@ -100,6 +105,8 @@ function Hero({ allProducts }: { allProducts: any[] }) {
       resolvedImg = dopamineHeroImg;
     } else if (resolvedSlug === "lionel-leather") {
       resolvedImg = messiHeroImg;
+    } else if (resolvedSlug === "divorce-lotion") {
+      resolvedImg = divorceLotionHero;
     } else {
       resolvedImg = match.img;
     }
@@ -211,10 +218,7 @@ function Hero({ allProducts }: { allProducts: any[] }) {
 
 function Home() {
   const { mode } = useMode();
-  const rawMode = mode || "OUD_BASE";
-  const activeMode = (rawMode === "DIVORCE_LOTION")
-    ? "OUD_BASE"
-    : rawMode;
+  const activeMode = mode || "OUD_BASE";
   const [allProducts, setAllProducts] = useState<any[]>(PRODUCTS);
 
   useEffect(() => {
@@ -246,13 +250,17 @@ function Home() {
 
   const isRollOnPremium = mode === "ROLL_ON_PREMIUM";
   const isMessiEdition = mode === "MESSI_EDITION";
+  const isDivorceLotion = mode === "DIVORCE_LOTION";
+
+  // Hide library and other sections for special single-product editions
+  const isHeroOnlyMode = isMessiEdition || isDivorceLotion;
 
   return (
     <SiteLayout>
       {!isRollOnPremium && <Hero allProducts={allProducts} />}
  
       {/* Mode-Specific Showcase */}
-      {!isMessiEdition && (
+      {!isHeroOnlyMode && (
         <section className={isRollOnPremium ? "pt-6 pb-16 md:pt-8 md:pb-24" : "py-16"}>
           <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
             {isRollOnPremium ? (
@@ -284,7 +292,7 @@ function Home() {
         </section>
       )}
  
-      {!isRollOnPremium && (
+      {!isRollOnPremium && !isHeroOnlyMode && (
         /* Global Combined Showcase Link above Footer */
         <section className="py-20 bg-cream/30 border-t border-border/40 text-center">
           <div className="max-w-xl mx-auto px-6">
