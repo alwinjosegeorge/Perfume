@@ -313,16 +313,18 @@ function ProductPage() {
           </div>
         </div>
 
-        <section className="mt-20">
-          <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-8 text-center">You May Also Like</h2>
-          <div className="grid grid-cols-2 md:flex md:justify-center gap-6 lg:gap-8">
-            {related.map((p) => (
-              <div key={p.slug} className="md:w-[280px] w-full">
-                <ProductCard p={p} />
-              </div>
-            ))}
-          </div>
-        </section>
+        {related.length > 0 && (
+          <section className="mt-20">
+            <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-8 text-center">You May Also Like</h2>
+            <div className="grid grid-cols-2 md:flex md:justify-center gap-6 lg:gap-8">
+              {related.map((p) => (
+                <div key={p.slug} className="md:w-[280px] w-full">
+                  <ProductCard p={p} />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
 
       {/* Full Screen Lightbox Modal */}

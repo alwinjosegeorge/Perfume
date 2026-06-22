@@ -35,7 +35,7 @@ export function ModeSelectionScreen() {
     { id: "FRESH_BASE", label: "Fresh Base" },
     { id: "DIVORCE_LOTION", label: "Divorce Lotion" },
     { id: "ROLL_ON_PREMIUM", label: "Roll ON Premium" },
-    { id: "MESSI_EDITION", label: "Messi edition" },
+    { id: "MESSI_EDITION", label: "Messi Edition" },
   ];
 
   const getModeLabel = (m: FragranceMode | null) => {
@@ -53,7 +53,7 @@ export function ModeSelectionScreen() {
       case "ROLL_ON_PREMIUM":
         return "Roll ON Premium";
       case "MESSI_EDITION":
-        return "Messi edition";
+        return "Messi Edition";
       default:
         return "Choose your fragrance base";
     }
