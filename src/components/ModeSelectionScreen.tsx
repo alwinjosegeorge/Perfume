@@ -114,7 +114,7 @@ export function ModeSelectionScreen() {
 
           {/* Custom Dropdown Options */}
           {isOpen && (
-            <div className="absolute left-0 right-0 mt-1.5 bg-white border border-[#EAE8E2] shadow-2xl rounded-none py-1.5 z-[120] flex flex-col md:max-h-[220px] md:overflow-y-auto md:dropdown-scroll animate-dropdown-fade">
+            <div className="absolute left-0 right-0 mt-1.5 bg-white border border-[#EAE8E2] shadow-2xl rounded-none py-1.5 z-[120] flex flex-col max-h-[220px] overflow-y-auto dropdown-scroll animate-dropdown-fade">
               {OPTIONS.map((opt) => (
                 <button
                   key={opt.id}
