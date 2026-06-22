@@ -151,11 +151,11 @@ function Hero({ allProducts }: { allProducts: any[] }) {
           <h1 className="font-display">
             {renderTitle(data.title)}
           </h1>
-          {mode === "MESSI_EDITION" ? (
+          {mode === "MESSI_EDITION" || mode === "DIVORCE_LOTION" ? (
             <p className="mt-8 text-muted-foreground text-sm lg:text-base max-w-lg mx-auto lg:mx-0 leading-relaxed whitespace-pre-line text-left">
               {isDescExpanded
                 ? data.description
-                : data.description.slice(0, 175) + "..."}
+                : data.description.slice(0, 110) + "..."}
               <button
                 onClick={() => setIsDescExpanded(!isDescExpanded)}
                 className="ml-2 text-[#1c1917] hover:opacity-75 font-semibold underline cursor-pointer inline-block"
@@ -196,7 +196,7 @@ function Hero({ allProducts }: { allProducts: any[] }) {
             to="/product/$slug"
             params={{ slug: data.featuredSlug }}
             className={`relative mx-auto w-full max-w-[450px] block cursor-pointer group/heroimg ${
-              mode === "MESSI_EDITION" ? "aspect-[118/160]" : "aspect-square"
+              mode === "MESSI_EDITION" || mode === "DIVORCE_LOTION" ? "aspect-[118/160]" : "aspect-square"
             }`}
           >
             <div className="absolute inset-0 overflow-hidden bg-cream group-hover/heroimg:scale-[1.01] transition-transform duration-500 rounded-none border border-border/80">
