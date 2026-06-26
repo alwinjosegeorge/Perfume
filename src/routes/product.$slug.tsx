@@ -115,7 +115,9 @@ function ProductPage() {
   }, [product, allProducts]);
 
   const currentPrice = getPriceForSize(product, selectedSize);
-  const allImages = [product.img, ...(product.gallery || [])] as string[];
+  const allImages = product.base === "ROLL_ON_PREMIUM" && product.gallery && product.gallery.length > 0
+    ? [product.gallery[0], product.img, ...product.gallery.slice(1)]
+    : ([product.img, ...(product.gallery || [])] as string[]);
 
   return (
     <SiteLayout>

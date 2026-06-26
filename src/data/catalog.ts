@@ -284,12 +284,12 @@ export const PRODUCTS: Product[] = [
     category: "Patchouli & warm spicy",
     price: 1000,
     priceLabel: "₹1,000",
-    img: dubaiNightsNewImg,
+    img: dubaiNightsImg,
     hr: "8 Hours",
     description: "മരുഭൂമിയിലെ രാത്രികളുടെ സമൃദ്ധിയും രഹസ്യവും. ഈത്ത പന മരത്തിൽ നിന്നും നേർത്ത സൗമ്യമായ ഊദിലേക്.ഫ്രഞ്ച് രാജകുമാരിമാർക്കിടയിൽ ഏറ്റവും പ്രിയപ്പെട്ടത്",
     base: "ROLL_ON_PREMIUM",
     pricing: { "10 ml": 1000 },
-    gallery: [dubaiNightsImg]
+    gallery: [dubaiNightsNewImg]
   },
   {
     slug: "palace-in-paris",
@@ -297,12 +297,12 @@ export const PRODUCTS: Product[] = [
     category: "Dry Oriental & rare oud",
     price: 1000,
     priceLabel: "₹1,000",
-    img: placeParisNewImg,
+    img: placeParisImg,
     hr: "24 Hours",
     description: "ഒരു പുതിയ സൗഹൃദത്തിന്റെ തുടക്കം.ആഴമേറിയ സൗഹൃദം പോലെ ഒരിക്കലും വിട്ടു പിരിയാൻ ആകാത്ത വിധം ശരീരത്തിൽ നിലനിൽക്കുന്ന ഊദ്. വെള്ളമൊഴിച്ചു കഴുകിയാലും പിരിഞ്ഞു പോകാൻ പറ്റാത്ത വിധം നിലനിൽക്കുന്നത്. രാജ്യങ്ങൾ തമ്മിലുള്ള ആഴമേറിയ സൗഹൃദം പോലെ കണക്കാക്കുന്ന വിധം നിർമ്മിക്കപ്പെട്ടത്",
     base: "ROLL_ON_PREMIUM",
     pricing: { "10 ml": 1000 },
-    gallery: [placeParisImg]
+    gallery: [placeParisNewImg]
   },
   {
     slug: "last-seen",
@@ -310,12 +310,12 @@ export const PRODUCTS: Product[] = [
     category: "Tuberose & fruity",
     price: 1000,
     priceLabel: "₹1,000",
-    img: lastSeenNewImg,
+    img: lastSeenImg,
     hr: "8 Hours",
     description: "അകലങ്ങൾക്കിടയിലും നിലനിൽക്കുന്ന ഓർമ്മകൾ. ഒരു കാമുകിയെ പോലെ നീ സ്നേഹിക്കപെടാൻ ഉറപ്പുള്ള സുഗന്ധം . സ്നേഹമാണ് ഒരുപാട് അകന്നു പോവാൻ കഴിയാത്ത വിധം സ്നേഹിക്കപെടും . തീർന്നു പോയാൽ കരച്ചിൽ വരും. ആത്മബന്ധം പുനഃസ്ഥാപിക്കാൻ വീണ്ടും മനസ് ആഗ്രഹിക്കുന്ന ഒന്ന് .",
     base: "ROLL_ON_PREMIUM",
     pricing: { "10 ml": 1000 },
-    gallery: [lastSeenImg]
+    gallery: [lastSeenNewImg]
   },
   {
     slug: "cafe-lips",
@@ -323,12 +323,12 @@ export const PRODUCTS: Product[] = [
     category: "Coffee & warm spicy",
     price: 810,
     priceLabel: "₹810",
-    img: cafeLipsNewImg,
+    img: cafeLipsImg,
     hr: "5 Hours",
     description: "കൊട്ടാരങ്ങളിലെ ഔദ്യോഗിക കൂടിക്കാഴ്ചകൾ കഴിഞ്ഞ്, മനുഷ്യരെ അടുത്ത് കൊണ്ടുവന്ന സംഭാഷണങ്ങളുടെ സുഗന്ധം. ആദ്യത്തെ സ്പ്രിറ്റ്സിൽ തന്നെ, കഫെ ലാറ്റെ നിങ്ങളുടെ ഇന്ദ്രിയങ്ങളെ ഉണർത്തുന്നു, കടുപ്പമേറിയ കോഫി, മധുരമുള്ള ബദാം, ക്രീം പാൽ എന്നിവയുടെ മികച്ച കുറിപ്പുകൾ. സുഗന്ധം പരക്കുമ്പോൾ, മിനുസമാർന്ന ഐസ്ക്രീം, സ്വർണ്ണ വാനില, ചൂടുള്ള ആമ്പർ എന്നിവയുടെ ഹൃദയസ്പർശിയായ കുറിപ്പുകൾ ഒരുമിച്ച് ഉരുകി, നിങ്ങളെ ഒരു സ്വാദിഷ്ടമായ മൃദുലമായ ആലിംഗനത്തിൽ പൊതിഞ്ഞു നിർത്തുന്നു.",
     base: "ROLL_ON_PREMIUM",
     pricing: { "10 ml": 810 },
-    gallery: [cafeLipsImg]
+    gallery: [cafeLipsNewImg]
   },
   {
     slug: "sacrifice",
@@ -336,12 +336,12 @@ export const PRODUCTS: Product[] = [
     category: "Sichuan pepper & ginger",
     price: 1000,
     priceLabel: "₹1,000",
-    img: sacrificeNewImg,
+    img: sacrificeImg,
     hr: "8 Hours",
     description: "ഒരു സാമ്രാജ്യം നിലനിൽക്കാൻ നൽകിയ ത്യാഗങ്ങളുടെ ഓർമ്മ. പുരുഷന്മാർക്ക് വേണ്ടിയുള്ള ഒരു നിർത്തലാക്കപ്പെട്ട, കരുത്തുറ്റതും ഇരുണ്ടതുമായ ചൈപ്രെ സുഗന്ധം. ഇത് മൂർച്ചയുള്ളതും കടുപ്പമുള്ളതുമായ സുഗന്ധവ്യഞ്ജനങ്ങളെ സമ്പന്നമായ, മണ്ണുകൊണ്ടുള്ള മരങ്ങളുമായി താരതമ്യം ചെയ്യുന്നു, ഇത് ക്ഷമാപണമില്ലാത്തതും, പക്വവും, ആധുനികവുമായ ഒരു ભാവം നൽകുന്നു.",
     base: "ROLL_ON_PREMIUM",
     pricing: { "10 ml": 1000 },
-    gallery: [sacrificeImg]
+    gallery: [sacrificeNewImg]
   },
   {
     slug: "lionel-leather",
