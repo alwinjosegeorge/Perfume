@@ -29,13 +29,13 @@ export function ModeSelectionScreen() {
   };
 
   const OPTIONS = [
+    { id: "MESSI_EDITION", label: "Messi Edition" },
+    { id: "ROLL_ON_PREMIUM", label: "Roll ON Premium" },
     { id: "OUD_BASE", label: "Oud Base" },
     { id: "FLORAL_BASE", label: "Floral Base" },
     { id: "FRUITY_BASE", label: "Fruity Base" },
     { id: "FRESH_BASE", label: "Fresh Base" },
     { id: "DIVORCE_LOTION", label: "Divorce Lotion" },
-    { id: "ROLL_ON_PREMIUM", label: "Roll ON Premium" },
-    { id: "MESSI_EDITION", label: "Messi Edition" },
   ];
 
   const getModeLabel = (m: FragranceMode | null) => {
