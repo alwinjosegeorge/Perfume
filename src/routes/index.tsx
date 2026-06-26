@@ -16,6 +16,7 @@ import oilsPageHeaderMobile from "@/assets/oils-page-header-mobile.png";
 import messiHeroImg from "@/assets/messi-hero.png";
 import oilsPageHeaderLap from "@/assets/oils-page-header-lap.png";
 import divorceLotionHero from "@/assets/divorce-lotion-hero.png";
+import oilsPageHeaderImage from "@/assets/oils-page-header-image.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -264,19 +265,37 @@ function Home() {
         <section className={isRollOnPremium ? "pt-6 pb-16 md:pt-8 md:pb-24" : "py-16"}>
           <div className="max-w-[1300px] mx-auto px-6 lg:px-12">
             {isRollOnPremium ? (
-              <div className="flex flex-col items-center justify-center text-center mt-2 mb-12 animate-fade-up mx-auto w-full">
-                {/* Desktop Header Image */}
+              <div className="flex flex-col items-center justify-center text-center mt-2 mb-12 animate-fade-up mx-auto w-full select-none">
+                {/* Top Image */}
                 <img
-                  src={oilsPageHeaderLap}
+                  src={oilsPageHeaderImage}
                   alt="1001 Collections"
-                  className="hidden md:block max-w-[600px] w-full h-auto object-contain select-none pointer-events-none"
+                  className="w-full max-w-[380px] md:max-w-[420px] h-auto object-contain select-none pointer-events-none mb-6"
                 />
-                {/* Mobile Header Image */}
-                <img
-                  src={oilsPageHeaderLap}
-                  alt="1001 Collections"
-                  className="block md:hidden max-w-[320px] w-full h-auto object-contain select-none pointer-events-none"
-                />
+
+                {/* Heading */}
+                <h2 
+                  className="text-center font-bold tracking-[0.06em] text-[#111111] text-[23px] md:text-3xl lg:text-[34px] uppercase mb-[28px]"
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                >
+                  PREMIUM FRAGRANCE OILS
+                </h2>
+
+                {/* English Paragraph */}
+                <p 
+                  className="text-center text-[10px] md:text-[12px] text-zinc-800 leading-[1.6] uppercase tracking-[0.08em] mb-[30px] max-w-[850px] w-[90%] md:w-full"
+                  style={{ fontFamily: "'Cinzel', 'Cormorant Garamond', serif", fontVariant: "small-caps" }}
+                >
+                  IN MANY COUNTRIES, SPICES ARE CONSIDERED PRECIOUS AND PRESERVED, AND SOME OF THEM ARE GIVEN TO THE OUTSIDE WORLD FOR KNOWLEDGE. IN SUCH A WAY, CONSIDERING THE PALACES AND PALACES OF MANY COUNTRIES WE HAVE DECIDED TO COLLECT ONLY THOSE SPICES THAT ARE CONSIDERED PRECIOUS TREASURES FROM PALACES AS RARE COLLECTIONS.
+                </p>
+
+                {/* Malayalam Paragraph */}
+                <p 
+                  className="text-center text-[10px] md:text-[11.5px] text-zinc-600 leading-[1.8] max-w-[850px] w-[90%] md:w-full font-light"
+                  style={{ fontFamily: "'Noto Serif Malayalam', 'Manjari', 'Noto Sans Malayalam', sans-serif" }}
+                >
+                  പല രാജ്യങ്ങളിലും സുഗന്ധവ്യഞ്ജനങ്ങൾ അമൂല്യവും സംരക്ഷിക്കപ്പെടുന്നതുമായി കണക്കാക്കപ്പെടുന്നു, അവയിൽ ചിലത് പുറം ലോകത്തിന് അറിവിനായി നൽകപ്പെടുന്നു അങ്ങനെ, പല രാജ്യങ്ങളിലെയും കൊട്ടാരങ്ങളും കൊട്ടാരങ്ങളും കണക്കിലെടുക്കുമ്പോൾ, കൊട്ടാരങ്ങളിൽ നിന്ന് അപൂർവ ശേഖരങ്ങളായി കണക്കാക്കപ്പെടുന്ന സുഗന്ധവ്യഞ്ജനങ്ങൾ മാത്രം ശേഖരിക്കാൻ ഞങ്ങൾ തീരുമാനിച്ചു.
+                </p>
               </div>
             ) : (
               <h2 className="text-center font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-12">
