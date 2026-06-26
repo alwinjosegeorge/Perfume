@@ -270,20 +270,20 @@ function Home() {
                 <img
                   src={oilsPageHeaderImage}
                   alt="1001 Collections"
-                  className="w-full max-w-[380px] md:max-w-[420px] h-auto object-contain select-none pointer-events-none mb-6"
+                  className="w-full max-w-[380px] md:max-w-[420px] h-auto object-contain select-none pointer-events-none mb-4"
                 />
 
                 {/* Heading */}
                 <h2 
-                  className="text-center font-bold tracking-[0.06em] text-[#111111] text-[23px] md:text-3xl lg:text-[34px] uppercase mb-[28px]"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  className="text-center font-extrabold tracking-[0.06em] text-[#111111] text-[28px] md:text-3xl lg:text-[34px] uppercase mb-4"
+                  style={{ fontFamily: "'RyuGothic', 'Ryu Gothic', 'Montserrat', sans-serif" }}
                 >
                   PREMIUM FRAGRANCE OILS
                 </h2>
 
                 {/* English Paragraph */}
                 <p 
-                  className="text-center text-[10px] md:text-[12px] text-zinc-800 leading-[1.6] uppercase tracking-[0.08em] mb-[30px] max-w-[850px] w-[90%] md:w-full"
+                  className="text-center text-[10px] md:text-[12px] text-zinc-800 leading-[1.6] uppercase tracking-[0.08em] mb-4 max-w-[850px] w-[90%] md:w-full"
                   style={{ fontFamily: "'Cinzel', 'Cormorant Garamond', serif", fontVariant: "small-caps" }}
                 >
                   IN MANY COUNTRIES, SPICES ARE CONSIDERED PRECIOUS AND PRESERVED, AND SOME OF THEM ARE GIVEN TO THE OUTSIDE WORLD FOR KNOWLEDGE. IN SUCH A WAY, CONSIDERING THE PALACES AND PALACES OF MANY COUNTRIES WE HAVE DECIDED TO COLLECT ONLY THOSE SPICES THAT ARE CONSIDERED PRECIOUS TREASURES FROM PALACES AS RARE COLLECTIONS.
