@@ -33,11 +33,11 @@ import placeParisImg from "@/assets/place-paris.png";
 import lastSeenImg from "@/assets/last-seen.png";
 import cafeLipsImg from "@/assets/cafe-lips.png";
 import sacrificeImg from "@/assets/sacrifice.png";
-import dubaiNightsNewImg from "@/assets/dubai-nights-new.png";
-import placeParisNewImg from "@/assets/place-paris-new.png";
-import lastSeenNewImg from "@/assets/last-seen-new.png";
-import cafeLipsNewImg from "@/assets/cafe-lips-new.png";
-import sacrificeNewImg from "@/assets/sacrifice-new.png";
+import dubaiNightsNewImg from "@/assets/dubai-nights-new.webp";
+import placeParisNewImg from "@/assets/place-paris-new.webp";
+import lastSeenNewImg from "@/assets/last-seen-new.webp";
+import cafeLipsNewImg from "@/assets/cafe-lips-new.webp";
+import sacrificeNewImg from "@/assets/sacrifice-new.webp";
 
 // Extra Gallery Images
 import burningAttraction1 from "@/assets/burning-attraction-1.jpeg";
@@ -55,7 +55,7 @@ import evesTemptation4 from "@/assets/eves-temptation-4.jpeg";
 import evesTemptation5 from "@/assets/eves-temptation-5.jpeg";
 
 // Messi Edition Imports
-import messiHeroImg from "@/assets/messi-hero.png";
+import messiHeroImg from "@/assets/messi-hero.webp";
 import messiProductImg from "@/assets/messi-product.jpg";
 import messiGalleryImg from "@/assets/messi-gallery.jpg";
 import evesTemptation5b from "@/assets/eves-temptation-5b.jpeg";

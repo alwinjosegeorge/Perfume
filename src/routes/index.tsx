@@ -12,11 +12,11 @@ import divorceHero from "@/assets/divorce-hero.jpg";
 import seductionHeroImg from "@/assets/seduction-1.jpeg";
 import dopamineHeroImg from "@/assets/dopamine-1.jpeg";
 import oilsPageHeader from "@/assets/oils-page-header.png";
-import oilsPageHeaderMobile from "@/assets/oils-page-header-mobile.png";
-import messiHeroImg from "@/assets/messi-hero.png";
+import oilsPageHeaderMobile from "@/assets/oils-page-header-mobile.webp";
+import messiHeroImg from "@/assets/messi-hero.webp";
 import oilsPageHeaderLap from "@/assets/oils-page-header-lap.png";
 import divorceLotionHero from "@/assets/divorce-lotion-hero.png";
-import oilsPageHeaderImage from "@/assets/oils-page-header-image.png";
+import oilsPageHeaderImage from "@/assets/oils-page-header-image.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
