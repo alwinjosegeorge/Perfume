@@ -30,7 +30,6 @@ const loadRazorpayScript = () => {
 };
 
 const STATES_OF_INDIA = [
-  "Kerala",
   "Andhra Pradesh",
   "Arunachal Pradesh",
   "Assam",
@@ -42,6 +41,7 @@ const STATES_OF_INDIA = [
   "Himachal Pradesh",
   "Jharkhand",
   "Karnataka",
+  "Kerala",
   "Madhya Pradesh",
   "Maharashtra",
   "Manipur",
@@ -57,15 +57,7 @@ const STATES_OF_INDIA = [
   "Tripura",
   "Uttar Pradesh",
   "Uttarakhand",
-  "West Bengal",
-  "Andaman and Nicobar Islands",
-  "Chandigarh",
-  "Dadra and Nagar Haveli and Daman and Diu",
-  "Delhi",
-  "Jammu and Kashmir",
-  "Ladakh",
-  "Lakshadweep",
-  "Puducherry"
+  "West Bengal"
 ];
 
 function CartPage() {
