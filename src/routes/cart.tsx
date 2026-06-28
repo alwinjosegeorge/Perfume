@@ -30,6 +30,9 @@ const loadRazorpayScript = () => {
 };
 
 const STATES_OF_INDIA = [
+  "Kerala",
+  "Tamil Nadu",
+  "Karnataka",
   "Andhra Pradesh",
   "Arunachal Pradesh",
   "Assam",
@@ -40,8 +43,6 @@ const STATES_OF_INDIA = [
   "Haryana",
   "Himachal Pradesh",
   "Jharkhand",
-  "Karnataka",
-  "Kerala",
   "Madhya Pradesh",
   "Maharashtra",
   "Manipur",
@@ -52,7 +53,6 @@ const STATES_OF_INDIA = [
   "Punjab",
   "Rajasthan",
   "Sikkim",
-  "Tamil Nadu",
   "Telangana",
   "Tripura",
   "Uttar Pradesh",
