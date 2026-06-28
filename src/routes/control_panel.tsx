@@ -433,6 +433,7 @@ function ControlPanel() {
     waiting: orders.filter((o) => o.status === "WAITING").length,
     shipped: orders.filter((o) => o.status === "SHIPPED").length,
     delivered: orders.filter((o) => o.status === "DELIVERED").length,
+    revenue: orders.reduce((sum, o) => sum + (o.total || 0), 0),
   };
 
   return (
@@ -514,7 +515,7 @@ function ControlPanel() {
               </div>
 
               {/* Stats Cards */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div className="bg-white border border-[#EAE8E2] rounded-2xl p-4 shadow-sm">
                   <div className="text-[9px] tracking-wider text-muted-foreground font-bold uppercase">Total</div>
                   <div className="text-3xl font-display mt-1.5">{stats.total}</div>
@@ -530,6 +531,10 @@ function ControlPanel() {
                 <div className="bg-white border border-[#EAE8E2] rounded-2xl p-4 shadow-sm">
                   <div className="text-[9px] tracking-wider text-emerald-600 font-bold uppercase">Delivered</div>
                   <div className="text-3xl font-display text-emerald-600 mt-1.5">{stats.delivered}</div>
+                </div>
+                <div className="bg-white border border-[#EAE8E2] rounded-2xl p-4 shadow-sm col-span-2 md:col-span-1">
+                  <div className="text-[9px] tracking-wider text-[#000000] font-bold uppercase">Revenue</div>
+                  <div className="text-2xl font-display text-[#000000] mt-1.5 font-bold">₹{stats.revenue.toLocaleString("en-IN")}</div>
                 </div>
               </div>
 
