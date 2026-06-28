@@ -463,7 +463,7 @@ function CartPage() {
                 onClick={() => setIsCheckingOut(true)}
                 className="mt-6 w-full bg-[#000000] hover:bg-zinc-900 text-white rounded-full py-4 font-bold text-xs tracking-[0.15em] uppercase cursor-pointer shadow-md flex items-center justify-center gap-2.5 transition-all hover:scale-[1.01] active:scale-[0.99]"
               >
-                <ShoppingBag className="w-4 h-4 fill-white stroke-black" />
+                <ShoppingBag className="w-4 h-4 text-white fill-none stroke-[2]" />
                 Checkout Securely
               </button>
 
