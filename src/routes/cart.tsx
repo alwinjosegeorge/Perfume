@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Minus, Plus, X, Check, ShoppingBag, ChevronDown } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { useCart } from "@/lib/cart";
@@ -70,6 +70,21 @@ function CartPage() {
     : 0;
   const total = subtotal + shipping;
   const [orderPlaced, setOrderPlaced] = useState<string | null>(null);
+  const [isStateDropdownOpen, setIsStateDropdownOpen] = useState(false);
+  const stateDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (stateDropdownRef.current && !stateDropdownRef.current.contains(event.target as Node)) {
+        setIsStateDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   // Scroll to top on view changes (cart -> checkout -> success)
   useEffect(() => {
@@ -318,21 +333,37 @@ function CartPage() {
                     <label className="block text-[10px] tracking-wider text-muted-foreground font-bold uppercase mb-1.5">
                       State *
                     </label>
-                    <div className="relative">
-                      <select
-                        required
-                        value={deliveryState}
-                        onChange={(e) => setDeliveryState(e.target.value)}
-                        className="w-full bg-[#FAF9F5] border border-border rounded-xl pl-4 pr-10 py-2.5 text-xs outline-none focus:ring-1 focus:ring-accent cursor-pointer appearance-none"
+                    <div className="relative" ref={stateDropdownRef}>
+                      <button
+                        type="button"
+                        onClick={() => setIsStateDropdownOpen(!isStateDropdownOpen)}
+                        className="w-full bg-[#FAF9F5] border border-border rounded-xl pl-4 pr-10 py-2.5 text-xs outline-none focus:ring-1 focus:ring-accent cursor-pointer flex items-center justify-between text-left h-[38px] transition-all"
                       >
-                        <option value="">Select State</option>
-                        {STATES_OF_INDIA.map((st) => (
-                          <option key={st} value={st}>{st}</option>
-                        ))}
-                      </select>
-                      <div className="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none text-muted-foreground/80">
-                        <ChevronDown className="w-3.5 h-3.5" />
-                      </div>
+                        <span className={deliveryState ? "text-foreground font-medium" : "text-muted-foreground"}>
+                          {deliveryState || "Select State"}
+                        </span>
+                        <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground/80 transition-transform duration-200 ${isStateDropdownOpen ? "rotate-180" : ""}`} />
+                      </button>
+
+                      {isStateDropdownOpen && (
+                        <div className="absolute z-50 mt-1.5 w-full bg-[#FAF9F5] border border-border rounded-xl shadow-lg max-h-60 overflow-y-auto py-1.5 animate-fade-in">
+                          {STATES_OF_INDIA.map((st) => (
+                            <button
+                              key={st}
+                              type="button"
+                              onClick={() => {
+                                setDeliveryState(st);
+                                setIsStateDropdownOpen(false);
+                              }}
+                              className={`w-full text-left px-4 py-2.5 text-xs transition-colors hover:bg-accent/10 hover:text-accent font-medium cursor-pointer ${
+                                deliveryState === st ? "bg-accent/5 text-accent font-semibold" : "text-foreground"
+                              }`}
+                            >
+                              {st}
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
