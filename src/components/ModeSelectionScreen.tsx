@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useMode, FragranceMode } from "@/context/ModeContext";
 import logoImg from "@/assets/logo.png";
 import bgImage from "@/assets/divorce-hero.webp";
-import bgImageMobile from "@/assets/web-page-1.jpg";
+import bgImageMobile from "@/assets/web-page-1.webp";
 import { ChevronDown, Check } from "lucide-react";
 
 export function ModeSelectionScreen() {
