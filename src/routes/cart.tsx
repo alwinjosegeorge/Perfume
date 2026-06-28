@@ -29,12 +29,54 @@ const loadRazorpayScript = () => {
   });
 };
 
+const STATES_OF_INDIA = [
+  "Kerala",
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  "Andaman and Nicobar Islands",
+  "Chandigarh",
+  "Dadra and Nagar Haveli and Daman and Diu",
+  "Delhi",
+  "Jammu and Kashmir",
+  "Ladakh",
+  "Lakshadweep",
+  "Puducherry"
+];
+
 function CartPage() {
   const { detailed, setQty, remove, subtotal, clear } = useCart();
-  const shipping = detailed.length > 0 ? 150 : 0;
-  const total = subtotal + shipping;
-
+  const [deliveryState, setDeliveryState] = useState("");
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+
+  const shipping = isCheckingOut
+    ? (deliveryState.toLowerCase() === "kerala" ? 70 : deliveryState ? 120 : 0)
+    : 0;
+  const total = subtotal + shipping;
   const [orderPlaced, setOrderPlaced] = useState<string | null>(null);
 
   // Scroll to top on view changes (cart -> checkout -> success)
@@ -50,7 +92,6 @@ function CartPage() {
   const [deliveryHouse, setDeliveryHouse] = useState("");
   const [deliveryArea, setDeliveryArea] = useState("");
   const [deliveryDistrict, setDeliveryDistrict] = useState("");
-  const [deliveryState, setDeliveryState] = useState("");
   const [deliveryPin, setDeliveryPin] = useState("");
 
   const submitOrder = (orderId: string, paymentId: string) => {
@@ -285,14 +326,17 @@ function CartPage() {
                     <label className="block text-[10px] tracking-wider text-muted-foreground font-bold uppercase mb-1.5">
                       State *
                     </label>
-                    <input
-                      type="text"
+                    <select
                       required
                       value={deliveryState}
                       onChange={(e) => setDeliveryState(e.target.value)}
-                      placeholder="State"
-                      className="w-full bg-[#FAF9F5] border border-border rounded-xl px-4 py-2.5 text-xs outline-none focus:ring-1 focus:ring-accent"
-                    />
+                      className="w-full bg-[#FAF9F5] border border-border rounded-xl px-4 py-2.5 text-xs outline-none focus:ring-1 focus:ring-accent cursor-pointer"
+                    >
+                      <option value="">Select State</option>
+                      {STATES_OF_INDIA.map((st) => (
+                        <option key={st} value={st}>{st}</option>
+                      ))}
+                    </select>
                   </div>
                 </div>
               </div>
@@ -316,7 +360,12 @@ function CartPage() {
 
               <div className="space-y-3 text-xs border-b border-border pb-4">
                 <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span className="font-semibold">₹{subtotal.toLocaleString("en-IN")}</span></div>
-                <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span className="font-semibold">₹{shipping.toLocaleString("en-IN")}</span></div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Shipping</span>
+                  <span className="font-semibold">
+                    {deliveryState ? `₹${shipping.toLocaleString("en-IN")}` : "Select State"}
+                  </span>
+                </div>
                 <div className="flex justify-between font-bold text-sm pt-1.5 border-t border-dashed border-border"><span className="text-foreground">Total</span><span className="text-foreground">₹{total.toLocaleString("en-IN")}</span></div>
               </div>
 
@@ -372,7 +421,12 @@ function CartPage() {
               <h2 className="font-display text-2xl mb-6">Order Summary</h2>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span className="font-semibold">₹{subtotal.toLocaleString("en-IN")}</span></div>
-                <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span className="font-semibold">₹{shipping.toLocaleString("en-IN")}</span></div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Shipping</span>
+                  <span className="font-semibold text-muted-foreground text-xs italic">
+                    Calculated at checkout
+                  </span>
+                </div>
                 <div className="border-t border-border pt-3 flex justify-between font-medium text-base"><span>Total</span><span className="font-bold">₹{total.toLocaleString("en-IN")}</span></div>
               </div>
               <button
