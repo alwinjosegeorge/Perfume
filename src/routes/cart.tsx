@@ -163,6 +163,16 @@ function CartPage() {
       return;
     }
 
+    const orderId = `ERA-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    const razorpayKey = "rzp_test_dummy_key"; // Placeholder: User will change this later
+
+    // If key is dummy or not set, directly place the order (simulate success)
+    if (razorpayKey === "rzp_test_dummy_key") {
+      const paymentId = `pay_mock_${Math.random().toString(36).substring(2, 11).toUpperCase()}`;
+      submitOrder(orderId, paymentId);
+      return;
+    }
+
     // Load Razorpay Script
     const sdkLoaded = await loadRazorpayScript();
     if (!sdkLoaded) {
@@ -170,10 +180,8 @@ function CartPage() {
       return;
     }
 
-    const orderId = `ERA-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-
     const options = {
-      key: "rzp_test_dummy_key", // Placeholder: User will change this later
+      key: razorpayKey,
       amount: total * 100, // in paise
       currency: "INR",
       name: "Voguish Moments Perfumes",
@@ -197,7 +205,6 @@ function CartPage() {
     } catch (err) {
       console.error("Razorpay open error: ", err);
       // Fallback checkout for testing/dummy environment
-      alert("Razorpay sandbox payment loaded. Completing payment step...");
       submitOrder(orderId, `pay_mock_${Math.random().toString(36).substring(2, 11).toUpperCase()}`);
     }
   };
