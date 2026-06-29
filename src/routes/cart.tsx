@@ -204,8 +204,7 @@ function CartPage() {
       rzp.open();
     } catch (err) {
       console.error("Razorpay open error: ", err);
-      // Fallback checkout for testing/dummy environment
-      submitOrder(orderId, `pay_mock_${Math.random().toString(36).substring(2, 11).toUpperCase()}`);
+      alert("Something went wrong while opening the payment window. Please try again.");
     }
   };
 
