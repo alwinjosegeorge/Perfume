@@ -49,6 +49,20 @@ function ControlPanel() {
   // Selected item states
   const [selectedOrder, setSelectedOrder] = useState<any | null>(null);
   const [orderSearchQuery, setOrderSearchQuery] = useState("");
+  const [copiedAddressId, setCopiedAddressId] = useState<string | null>(null);
+
+  const handleCopyAddress = (order: any) => {
+    const text = `${order.customerName}
+${order.customerPhone}
+${order.deliveryAddress.house}
+${order.deliveryAddress.area}${order.deliveryAddress.landmark ? `\nLandmark: ${order.deliveryAddress.landmark}` : ''}
+${order.deliveryAddress.district}, ${order.deliveryAddress.state} - ${order.deliveryAddress.pin}`;
+
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedAddressId(order.id);
+      setTimeout(() => setCopiedAddressId(null), 2000);
+    });
+  };
 
   // Editing state
   const [editingSlug, setEditingSlug] = useState<string | null>(null);
@@ -659,8 +673,21 @@ function ControlPanel() {
                         {/* Delivery Address */}
                         {selectedOrder.deliveryAddress && (
                           <div className="space-y-2 text-xs border-b border-border pb-4">
-                            <div className="text-[9px] tracking-wider text-muted-foreground font-bold uppercase">Delivery Address</div>
-                            <div className="text-muted-foreground leading-relaxed bg-[#FAF9F5]/65 border border-border/70 rounded-2xl p-4">
+                            <div className="flex justify-between items-center">
+                              <div className="text-[9px] tracking-wider text-muted-foreground font-bold uppercase">Delivery Address</div>
+                              <button
+                                type="button"
+                                onClick={() => handleCopyAddress(selectedOrder)}
+                                className="text-[10px] font-bold text-accent hover:text-accent/80 transition-colors uppercase tracking-wider cursor-pointer bg-cream border border-border/80 rounded-lg px-2.5 py-1"
+                              >
+                                {copiedAddressId === selectedOrder.id ? "✓ Copied" : "Copy Address"}
+                              </button>
+                            </div>
+                            <div className="text-muted-foreground leading-relaxed bg-[#FAF9F5]/65 border border-border/70 rounded-2xl p-4 space-y-1.5">
+                              <div className="border-b border-border/60 pb-2 mb-2">
+                                <div className="font-bold text-foreground text-sm">{selectedOrder.customerName}</div>
+                                <div className="font-mono font-bold text-foreground text-[11px] mt-0.5">{selectedOrder.customerPhone}</div>
+                              </div>
                               <div className="font-semibold text-foreground">{selectedOrder.deliveryAddress.house}</div>
                               <div>{selectedOrder.deliveryAddress.area}</div>
                               {selectedOrder.deliveryAddress.landmark && (
