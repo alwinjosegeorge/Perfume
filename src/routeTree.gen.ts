@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as SearchRouteImport } from './routes/search'
-import { Route as Control_panelRouteImport } from './routes/control_panel'
+import { Route as ControlPanelRouteImport } from './routes/control-panel'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as ArticlesRouteImport } from './routes/articles'
@@ -30,9 +30,9 @@ const SearchRoute = SearchRouteImport.update({
   path: '/search',
   getParentRoute: () => rootRouteImport,
 } as any)
-const Control_panelRoute = Control_panelRouteImport.update({
-  id: '/control_panel',
-  path: '/control_panel',
+const ControlPanelRoute = ControlPanelRouteImport.update({
+  id: '/control-panel',
+  path: '/control-panel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -77,7 +77,7 @@ export interface FileRoutesByFullPath {
   '/articles': typeof ArticlesRouteWithChildren
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
-  '/control_panel': typeof Control_panelRoute
+  '/control-panel': typeof ControlPanelRoute
   '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
   '/articles/$slug': typeof ArticlesSlugRoute
@@ -89,7 +89,7 @@ export interface FileRoutesByTo {
   '/articles': typeof ArticlesRouteWithChildren
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
-  '/control_panel': typeof Control_panelRoute
+  '/control-panel': typeof ControlPanelRoute
   '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
   '/articles/$slug': typeof ArticlesSlugRoute
@@ -102,7 +102,7 @@ export interface FileRoutesById {
   '/articles': typeof ArticlesRouteWithChildren
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
-  '/control_panel': typeof Control_panelRoute
+  '/control-panel': typeof ControlPanelRoute
   '/search': typeof SearchRoute
   '/shop': typeof ShopRoute
   '/articles/$slug': typeof ArticlesSlugRoute
@@ -116,7 +116,7 @@ export interface FileRouteTypes {
     | '/articles'
     | '/cart'
     | '/contact'
-    | '/control_panel'
+    | '/control-panel'
     | '/search'
     | '/shop'
     | '/articles/$slug'
@@ -128,7 +128,7 @@ export interface FileRouteTypes {
     | '/articles'
     | '/cart'
     | '/contact'
-    | '/control_panel'
+    | '/control-panel'
     | '/search'
     | '/shop'
     | '/articles/$slug'
@@ -140,7 +140,7 @@ export interface FileRouteTypes {
     | '/articles'
     | '/cart'
     | '/contact'
-    | '/control_panel'
+    | '/control-panel'
     | '/search'
     | '/shop'
     | '/articles/$slug'
@@ -153,7 +153,7 @@ export interface RootRouteChildren {
   ArticlesRoute: typeof ArticlesRouteWithChildren
   CartRoute: typeof CartRoute
   ContactRoute: typeof ContactRoute
-  Control_panelRoute: typeof Control_panelRoute
+  ControlPanelRoute: typeof ControlPanelRoute
   SearchRoute: typeof SearchRoute
   ShopRoute: typeof ShopRoute
   ProductSlugRoute: typeof ProductSlugRoute
@@ -175,11 +175,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SearchRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/control_panel': {
-      id: '/control_panel'
-      path: '/control_panel'
-      fullPath: '/control_panel'
-      preLoaderRoute: typeof Control_panelRouteImport
+    '/control-panel': {
+      id: '/control-panel'
+      path: '/control-panel'
+      fullPath: '/control-panel'
+      preLoaderRoute: typeof ControlPanelRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -252,7 +252,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArticlesRoute: ArticlesRouteWithChildren,
   CartRoute: CartRoute,
   ContactRoute: ContactRoute,
-  Control_panelRoute: Control_panelRoute,
+  ControlPanelRoute: ControlPanelRoute,
   SearchRoute: SearchRoute,
   ShopRoute: ShopRoute,
   ProductSlugRoute: ProductSlugRoute,

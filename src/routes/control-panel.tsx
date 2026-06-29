@@ -17,7 +17,7 @@ import {
 } from "@/lib/api/dbFunctions";
 import { invalidateCache } from "@/lib/productService";
 
-export const Route = createFileRoute("/control_panel")({
+export const Route = createFileRoute("/control-panel")({
   component: ControlPanel,
 });
 
