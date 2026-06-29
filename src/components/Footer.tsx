@@ -36,6 +36,10 @@ export function Footer() {
             <Link to="/" className="hover:text-accent">Home</Link>
             <Link to="/about" className="hover:text-accent">About Us</Link>
             <Link to="/contact" className="hover:text-accent">Contact Us</Link>
+            <Link to="/shipping-policy" className="hover:text-accent">Shipping &amp; Return</Link>
+            <Link to="/refund-policy" className="hover:text-accent">Refund Policy</Link>
+            <Link to="/privacy-policy" className="hover:text-accent">Privacy Policy</Link>
+            <Link to="/terms-and-conditions" className="hover:text-accent">Terms &amp; Conditions</Link>
           </nav>
           <div className="flex flex-col md:items-end gap-1.5 text-xs text-muted-foreground text-center md:text-right">
             <p>© 2026 — Voguish Moments. All rights reserved.</p>
