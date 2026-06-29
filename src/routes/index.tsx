@@ -316,7 +316,7 @@ function Home() {
         <div className="max-w-xl mx-auto px-6">
           <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-4">Our Fragrance Library</h2>
           <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-            Discover our entire range of exceptional perfumes from all bases, crafted with premium ingredients and long-lasting concentration.
+            At the heart of this story lies Kannauj - India's historic perfume capital. It is here that Voguish Moments fragrances take form - shaped by ancient distillation techniques, rare botanicals, and generations of artisanal knowledge.
           </p>
           <Link
             to="/shop"
