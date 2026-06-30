@@ -67,6 +67,9 @@ export function ModeSelectionScreen() {
         "--bg-mobile": `url(${bgImageMobile})`,
       } as React.CSSProperties}
     >
+      {/* Clean dark overlay to improve text contrast without blurring */}
+      <div className="absolute inset-0 bg-black/40" />
+
       {/* Main card/form container - animate-fade-up runs here ONCE on mount */}
       <div className="relative z-10 max-w-sm w-full flex flex-col items-center animate-fade-up">
         {/* Centered Logo - Inverted to white */}
@@ -79,7 +82,7 @@ export function ModeSelectionScreen() {
         </div>
 
         {/* Title */}
-        <h2 className="font-sans text-xs md:text-sm font-bold tracking-[0.2em] text-zinc-900 md:text-white text-center mb-4 md:mb-6 uppercase">
+        <h2 className="font-sans text-xs md:text-sm font-bold tracking-[0.2em] text-white text-center mb-4 md:mb-6 uppercase">
           SELECT YOUR SIGNATURE
         </h2>
 
@@ -149,7 +152,7 @@ export function ModeSelectionScreen() {
         </button>
 
         {/* Small T&C link */}
-        <span className="text-[10px] tracking-widest text-zinc-500 md:text-white/30 hover:text-zinc-800 md:hover:text-white/50 font-medium uppercase mt-4 md:mt-6 transition-colors cursor-pointer">
+        <span className="text-[10px] tracking-widest text-white/40 hover:text-white/60 font-medium uppercase mt-4 md:mt-6 transition-colors cursor-pointer">
           Terms & Conditions
         </span>
       </div>
