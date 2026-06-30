@@ -331,10 +331,10 @@ function Home() {
         {/* Dark overlay for text contrast */}
         <div className="absolute inset-0 bg-black/45 z-10" />
 
-        <div className="max-w-xl mx-auto px-6 relative z-20">
-          <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-white mb-4">Our Fragrance Library</h2>
+        <div className="max-w-2xl mx-auto px-6 relative z-20">
+          <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-white mb-4">FORMULATED WITH INGREDIENTS</h2>
           <p className="text-sm text-white/80 leading-relaxed mb-8">
-            At the heart of this story lies Kannauj - India's historic perfume capital. It is here that Voguish Moments fragrances take form - shaped by ancient distillation techniques, rare botanicals, and generations of artisanal knowledge.
+            Every Voguish Moments fragrance begins a remarkable journey between two legendary perfume capitals. From the historic streets of Kannauj, India, where ancient distillation techniques have been perfected for centuries, to the renowned Centre-Val de Loire, France, celebrated for producing some of the world's finest aromatic ingredients. Here, generations of craftsmanship, rare botanicals, and French elegance come together to create fragrances that carry both heritage and luxury in every drop.
           </p>
           <Link
             to="/shop"
