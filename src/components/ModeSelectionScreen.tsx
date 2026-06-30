@@ -67,9 +67,6 @@ export function ModeSelectionScreen() {
         "--bg-mobile": `url(${bgImageMobile})`,
       } as React.CSSProperties}
     >
-      {/* Dark overlay for vintage, low-light aesthetic - lighter on mobile to showcase bright background */}
-      <div className="absolute inset-0 bg-black/20 md:bg-black/65 md:backdrop-blur-[2px]" />
-
       {/* Main card/form container - animate-fade-up runs here ONCE on mount */}
       <div className="relative z-10 max-w-sm w-full flex flex-col items-center animate-fade-up">
         {/* Centered Logo - Inverted to white */}
