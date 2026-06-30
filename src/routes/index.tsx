@@ -312,11 +312,11 @@ function Home() {
       )}
  
       {/* Global Combined Showcase Link above Footer */}
-      <section className="relative py-20 overflow-hidden text-center">
+      <section className="relative py-20 overflow-hidden text-center -mb-16">
         {/* Mobile Background Video (Air fryer recipes) */}
         <iframe
           src="https://player.cloudinary.com/embed/?cloud_name=dar4m0jyt&public_id=From_Klickpin.com-_Save_these_9_Unique_air_fryer_dinner_recipes_that_bring_together_comfort_beauty_and_useful_ideas_you_will_actually_try_for_anyo_1_ud9zpl&autoplay=true&loop=true&muted=true&controls=false&player[autoplay]=true&player[loop]=true&player[muted]=true&player[controls]=false"
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none border-none scale-[1.4] origin-top block md:hidden"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none border-none scale-[2.4] origin-top block md:hidden"
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
           style={{ border: "none" }}
         />
