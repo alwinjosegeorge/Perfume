@@ -19,7 +19,7 @@ function ShippingPolicyPage() {
         
         <div className="prose prose-stone max-w-none text-muted-foreground space-y-6 leading-relaxed">
           <p>
-            We have a 30-day return policy, which means you have 30 days after receiving your item to request a return.
+            We have a 3-day return policy, which means you have 3 days after receiving your item to request a return.
           </p>
 
           <p>
