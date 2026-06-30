@@ -313,16 +313,13 @@ function Home() {
  
       {/* Global Combined Showcase Link above Footer */}
       <section className="relative py-20 overflow-hidden text-center">
-        {/* Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        >
-          <source src="/From Klickpin.com- Save these 9 Unique air fryer dinner recipes that bring together comfort beauty and useful ideas you will actually try for anyo (1).mp4" type="video/mp4" />
-        </video>
+        {/* Background Video (Cloudinary Embed) */}
+        <iframe
+          src="https://player.cloudinary.com/embed/?cloud_name=dar4m0jyt&public_id=From_Klickpin.com-_Save_these_9_Unique_air_fryer_dinner_recipes_that_bring_together_comfort_beauty_and_useful_ideas_you_will_actually_try_for_anyo_1_ud9zpl&autoplay=true&loop=true&muted=true&controls=false&player[autoplay]=true&player[loop]=true&player[muted]=true&player[controls]=false"
+          className="absolute inset-0 w-full h-full z-0 pointer-events-none border-none scale-[1.3]"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          style={{ border: "none" }}
+        />
         
         {/* Dark overlay for text contrast */}
         <div className="absolute inset-0 bg-black/45 z-10" />
