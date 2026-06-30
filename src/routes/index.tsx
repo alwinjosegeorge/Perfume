@@ -312,15 +312,29 @@ function Home() {
       )}
  
       {/* Global Combined Showcase Link above Footer */}
-      <section className="py-20 bg-cream/30 border-t border-border/40 text-center">
-        <div className="max-w-xl mx-auto px-6">
-          <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-[#1c1917] mb-4">Our Fragrance Library</h2>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+      <section className="relative py-20 overflow-hidden text-center">
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/From Klickpin.com- Save these 9 Unique air fryer dinner recipes that bring together comfort beauty and useful ideas you will actually try for anyo (1).mp4" type="video/mp4" />
+        </video>
+        
+        {/* Dark overlay for text contrast */}
+        <div className="absolute inset-0 bg-black/45 z-10" />
+
+        <div className="max-w-xl mx-auto px-6 relative z-20">
+          <h2 className="font-display text-lg md:text-2xl font-light tracking-[0.2em] uppercase text-white mb-4">Our Fragrance Library</h2>
+          <p className="text-sm text-white/80 leading-relaxed mb-8">
             At the heart of this story lies Kannauj - India's historic perfume capital. It is here that Voguish Moments fragrances take form - shaped by ancient distillation techniques, rare botanicals, and generations of artisanal knowledge.
           </p>
           <Link
             to="/shop"
-            className="inline-flex items-center justify-center rounded-full bg-[#1c1917] hover:bg-[#1c1917]/90 text-white font-semibold text-xs tracking-widest uppercase px-8 py-4 shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+            className="inline-flex items-center justify-center rounded-full bg-white hover:bg-white/90 text-[#1c1917] font-semibold text-xs tracking-widest uppercase px-8 py-4 shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
           >
             See All Our Perfumes
           </Link>
