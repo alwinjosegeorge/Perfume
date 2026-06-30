@@ -164,7 +164,7 @@ function CartPage() {
     }
 
     const orderId = `ERA-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-    const razorpayKey: string = "rzp_test_T7NA2AMj97prY3"; // User active Razorpay test key
+    const razorpayKey: string = "rzp_live_T7xKZXNLWrVaj4"; // User active Razorpay live key
 
     // If key is dummy or not set, directly place the order (simulate success)
     if (razorpayKey === "rzp_test_dummy_key") {
