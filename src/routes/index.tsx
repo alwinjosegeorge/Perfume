@@ -316,7 +316,7 @@ function Home() {
         {/* Background Video (Cloudinary Embed) */}
         <iframe
           src="https://player.cloudinary.com/embed/?cloud_name=dar4m0jyt&public_id=From_Klickpin.com-_Save_these_9_Unique_air_fryer_dinner_recipes_that_bring_together_comfort_beauty_and_useful_ideas_you_will_actually_try_for_anyo_1_ud9zpl&autoplay=true&loop=true&muted=true&controls=false&player[autoplay]=true&player[loop]=true&player[muted]=true&player[controls]=false"
-          className="absolute inset-0 w-full h-full z-0 pointer-events-none border-none scale-[1.3]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full z-0 pointer-events-none border-none scale-[1.4] md:scale-[2.4]"
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
           style={{ border: "none" }}
         />
